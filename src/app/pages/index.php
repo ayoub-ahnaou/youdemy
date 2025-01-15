@@ -21,6 +21,8 @@
 
             <?php require_once '../components/categories.php'; ?>
 
+            <?php require_once '../components/why-choose-us.php'; ?>
+
             <?php require_once '../components/sponsors.php'; ?>
 
         </div>
