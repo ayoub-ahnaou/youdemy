@@ -13,6 +13,12 @@
     <div class="flex flex-col min-h-[100vh]">
         <?php require_once "../components/navbar.php"; ?>
 
+        <div class="flex-grow">
+
+            <?php require_once "../components/hero.php"; ?>
+
+        </div>
+
         <?php require_once "../components/footer.php"; ?>
     </div>
 </body>
