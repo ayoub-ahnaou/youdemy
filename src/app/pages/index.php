@@ -19,6 +19,8 @@
 
             <?php require_once '../components/cours.php'; ?>
 
+            <?php require_once '../components/categories.php'; ?>
+
         </div>
 
         <?php require_once "../components/footer.php"; ?>
