@@ -1667,6 +1667,10 @@ video {
           mask-image: radial-gradient(closest-side,white,transparent);
 }
 
+body {
+  font-family: "Oswald", sans-serif;
+}
+
 .focus-within\:outline-none:focus-within {
   outline: 2px solid transparent;
   outline-offset: 2px;
