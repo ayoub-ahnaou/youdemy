@@ -29,6 +29,31 @@
 
     <!-- Main Content -->
     <main class="flex-1 container mx-auto px-4 py-8">
+        <!-- Filters and Sort -->
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex gap-4">
+                <select class="px-4 py-2 rounded-lg border border-gray-300 bg-white">
+                    <option>All Categories</option>
+                    <option>Development</option>
+                    <option>Business</option>
+                    <option>Design</option>
+                    <option>Marketing</option>
+                </select>
+                <select class="px-4 py-2 rounded-lg border border-gray-300 bg-white">
+                    <option>All Levels</option>
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                </select>
+            </div>
+            <select class="px-4 py-2 rounded-lg border border-gray-300 bg-white">
+                <option>Most Popular</option>
+                <option>Highest Rated</option>
+                <option>Newest</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+            </select>
+        </div>
 
         <!-- Course Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
