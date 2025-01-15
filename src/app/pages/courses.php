@@ -13,6 +13,19 @@
 <body class="bg-gray-50 min-h-screen flex flex-col">
     <?php require_once "../components/navbar.php"; ?>
 
+    <!-- Header with Search -->
+    <div class="flex w-full container mx-auto my-4 px-4">
+        <input
+            type="text"
+            placeholder="Search..."
+            class="flex-1 px-4 py-2 text-gray-700 placeholder-gray-400 bg-gray-100 border border-gray-300 rounded-l-md" />
+        <button
+            class="px-4 py-2 font-medium text-white bg-black rounded-r-md hover:bg-gray-800">
+            Search
+        </button>
+    </div>
+
+    <hr>
 
     <!-- Main Content -->
     <main class="flex-1 container mx-auto px-4 py-8">
