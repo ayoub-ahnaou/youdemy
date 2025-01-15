@@ -78,6 +78,25 @@
             </div>
             <!-- Repeat similar cards with different content -->
         </div>
+
+        <!-- Pagination -->
+        <div class="mt-12 flex justify-center items-center gap-2 text-sm">
+            <button class="w-8 h-8 rounded-lg border border-gray-300 flex items-center justify-center hover:bg-gray-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button class="w-8 h-8 rounded-lg bg-red-500 text-white flex items-center justify-center">1</button>
+            <button class="w-8 h-8 rounded-lg border border-gray-300 flex items-center justify-center hover:bg-gray-100">2</button>
+            <button class="w-8 h-8 rounded-lg border border-gray-300 flex items-center justify-center hover:bg-gray-100">3</button>
+            <span class="px-2">...</span>
+            <button class="w-8 h-8 rounded-lg border border-gray-300 flex items-center justify-center hover:bg-gray-100">12</button>
+            <button class="w-8 h-8 rounded-lg border border-gray-300 flex items-center justify-center hover:bg-gray-100">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
     </main>
 
     <!-- Footer -->
