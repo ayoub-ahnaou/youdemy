@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Youdemy</title>
+    <link rel="stylesheet" href="../css/input.css">
+    <link rel="stylesheet" href="../css/output.css">
+
+</head>
+
+<body class="">
+    <div class="bg-gray-50 w-full min-h-[100vh] flex flex-col justify-between items-center">
+
+        <div class="flex-grow flex items-center">
+            <form action="" method="post" class="bg-white w-[400px] h-auto shadow-lg rounded-md flex flex-col">
+                <h1 class="p-4 border border-transparent border-l-black font-bold text-xl text-center">SIGN UP</h1>
+                <div class="p-6 flex flex-col text-sm gap-2">
+                    <label name="error_query" class="bg-red-50 text-red-500"><?= $err ?></label>
+                    <div class="flex gap-2 w-full">
+                        <div class="flex flex-col w-1/2">
+                            <label class="text-gray-500" for="firstname">First Name *</label>
+                            <input value="<?= $firstname ?>" type="text" name="firstname" id="firstname" placeholder="Enter your first name" class="bg-gray-100 rounded-sm p-1">
+                            <label name="firstname_err" class="text-red-600"><?= $firstname_err ?></label>
+                        </div>
+                        <div class="flex flex-col w-1/2">
+                            <label class="text-gray-500" for="lastname">Last Name *</label>
+                            <input value="<?= $lastname ?>" type="text" name="lastname" id="lastname" placeholder="Enter your last name" class="bg-gray-100 rounded-sm p-1">
+                            <label name="lastname_err" class="text-red-600"><?= $lastname_err ?></label>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label class="text-gray-500" for="phone">Phone *</label>
+                        <input value="<?= $phone ?>" type="phone" name="phone" id="phone" placeholder="e.g: +212-656-546523" class="bg-gray-100 rounded-sm p-1">
+                        <label name="phone_err" class="text-red-600"><?= $phone_err ?></label>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label class="text-gray-500" for="email">Email *</label>
+                        <input value="<?= $email ?>" type="email" name="email" id="email" placeholder="e.g: example@gmail.com" class="bg-gray-100 rounded-sm p-1">
+                        <label name="email_err" class="text-red-600"><?= $email_err ?></label>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label class="text-gray-500" for="password">Password *</label>
+                        <input value="<?= $password ?>" type="password" name="password" id="password" placeholder="password" class="bg-gray-100 rounded-sm p-1">
+                        <label name="password_err" class="text-red-600"><?= $password_err ?></label>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label class="text-gray-500" for="password_repeat">Confirm Password *</label>
+                        <input value="<?= $password_repeat ?>" type="password" name="password_repeat" id="password_repeat" placeholder="Confirm password" class="bg-gray-100 rounded-sm p-1">
+                        <label name="password_repeat_err" class="text-red-600"><?= $password_repeat_err ?></label>
+                    </div>
+
+                    <div class="flex gap-1">
+                        <input onchange="handle_show_pwd()" type="checkbox" name="show-pwd" id="show-pwd">
+                        <label for="show-pwd">show password</label>
+                    </div>
+
+                    <p class="text-gray-500 text-xs">*: Required fields</p>
+
+                    <input type="submit" name="submit" id="submit" value="Sign Up" class="bg-red-500 rounded-md p-2 text-white">
+                    <p class="mt-1">Already have an Account? <a class="font-bold hover:underline" href="login.php">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
