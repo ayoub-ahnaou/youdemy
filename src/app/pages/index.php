@@ -17,6 +17,8 @@
 
             <?php require_once "../components/hero.php"; ?>
 
+            <?php require_once '../components/cours.php'; ?>
+
         </div>
 
         <?php require_once "../components/footer.php"; ?>
