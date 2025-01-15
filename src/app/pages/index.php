@@ -21,6 +21,8 @@
 
             <?php require_once '../components/categories.php'; ?>
 
+            <?php require_once '../components/sponsors.php'; ?>
+
         </div>
 
         <?php require_once "../components/footer.php"; ?>
