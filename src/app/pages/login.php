@@ -12,6 +12,9 @@
 
 <body class="">
     <div class="bg-gray-50 w-full min-h-[100vh] flex flex-col justify-between items-center">
+        <div class="w-full">
+            <?php require_once "../components/navbar.php"; ?>
+        </div>
 
         <div class="flex-grow flex items-center">
             <form action="" method="post" class="bg-white w-[400px] h-auto shadow-lg rounded-md flex flex-col">
