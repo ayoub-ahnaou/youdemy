@@ -12,4 +12,11 @@ class CategoryModel {
     public function __construct(){
         $this->connection = Database::getInstance()->getConnection();
     }
+
+    public function getAllCategories() {
+        $stmt = $this->connection->prepare("SELECT * FROM categories");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 }
