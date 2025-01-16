@@ -30,4 +30,15 @@ class EtudiantModel {
             throw new Exception("Request failed: " . $e->getMessage());
         }
     }
+
+    public function getAllStudents() {
+        $sql = "SELECT * FROM users WHERE role_id = 3";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            throw new Exception("failed to retrieve students: " . $e->getMessage());
+        }
+    }
 }
