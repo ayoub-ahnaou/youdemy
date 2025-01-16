@@ -43,4 +43,16 @@ class CategoryModel {
             throw new Exception("Failed update category: " . $e->getMessage());
         }
     }
+
+    public function deleteCategory($category_id) {
+        $sql = "DELETE FROM tags WHERE category_id = :category_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([
+                ":category_id" => $category_id,
+            ])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Failed delete a tag: " . $e->getMessage());
+        }
+    }
 }
