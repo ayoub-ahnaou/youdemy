@@ -25,4 +25,15 @@ class PersonModel {
             throw new Exception("error while logging in: " . $e->getMessage());
         }
     }
+
+    public function isEmailExist($email) {
+        $sql = "SELECT * FROM users WHERE email = :email";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([":email" => $email]);
+            return $stmt->rowCount();
+        } catch (Exception $e) {
+            throw new Exception("Error while searching for user by email: " . $e->getMessage());
+        }
+    }
 }
