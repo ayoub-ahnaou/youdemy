@@ -44,4 +44,16 @@ class TagModel {
             throw new Exception("Failed update tag: " . $e->getMessage());
         }
     }
+
+    public function deleteTag($tag_id) {
+        $sql = "DELETE FROM tags WHERE tag_id = :tag_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([
+                ":tag_id" => $tag_id,
+            ])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Failed delete a tag: " . $e->getMessage());
+        }
+    }
 }
