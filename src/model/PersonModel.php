@@ -26,6 +26,23 @@ class PersonModel {
         }
     }
 
+    public function register(Person $person) {
+        $sql = "INSERT INTO users (firstname, lastname, phone, email, password) 
+        VALUES (:firstname, :lastname, :phone, :email, :password)";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([
+                ":firstname" => $person->__get("firstname"),
+                ":lastname" => $person->__get("lastname"),
+                ":phone" => $person->__get("phone"),
+                ":email" => $person->__get("email"),
+                ":password" => $person->__get("password")
+            ])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Error while registring: " . $e->getMessage());
+        }
+    }
+
     public function isEmailExist($email) {
         $sql = "SELECT * FROM users WHERE email = :email";
         try {
