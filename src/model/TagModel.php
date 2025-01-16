@@ -31,4 +31,17 @@ class TagModel {
             throw new Exception("Failed create tag: " . $e->getMessage());
         }
     }
+
+    public function updateTag(Tag $tag, $tag_id) {
+        $sql = "UPDATE tags SET tag_name = :tag_name WHERE tag_id = :tag_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([
+                ":tag_name" => $tag->__get("tag_name"),
+                ":tag_id" => $tag_id,
+            ])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Failed update tag: " . $e->getMessage());
+        }
+    }
 }
