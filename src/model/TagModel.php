@@ -19,4 +19,16 @@ class TagModel {
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function createTag(Tag $tag) {
+        $sql = "INSERT INTO tags (tag_name) VALUES (:tag_name)";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([
+                ":tag_name" => $tag->__get("tag_name"),
+            ])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Failed create tag: " . $e->getMessage());
+        }
+    }
 }
