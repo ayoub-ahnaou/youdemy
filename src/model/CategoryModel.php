@@ -1,8 +1,8 @@
 <?php
 namespace App\model;
 
+use App\class\Category;
 use App\config\Database;
-use Category;
 use Exception;
 use PDO;
 
@@ -45,14 +45,14 @@ class CategoryModel {
     }
 
     public function deleteCategory($category_id) {
-        $sql = "DELETE FROM tags WHERE category_id = :category_id";
+        $sql = "DELETE FROM categories WHERE category_id = :category_id";
         try {
             $stmt = $this->connection->prepare($sql);
             if($stmt->execute([
                 ":category_id" => $category_id,
             ])) return true;
         } catch (Exception $e) {
-            throw new Exception("Failed delete a tag: " . $e->getMessage());
+            throw new Exception("Failed delete a category: " . $e->getMessage());
         }
     }
 }
