@@ -9,16 +9,22 @@ function isAuth() {
 }
 
 function isStudent(){
-    $role_id = $_SESSION["role_id"] ?? null;
-    return $role_id == 3 ? true : false;
+    if(isAuth()) {
+        $role_id = $_SESSION["role_id"] ?? null;
+        return $role_id == 3 ? true : false;
+    } return false;
 }
 
 function isTeacher(){
-    $role_id = $_SESSION["role_id"] ?? null;
-    return $role_id == 2 ? true : false;
+    if(isAuth()) {
+        $role_id = $_SESSION["role_id"] ?? null;
+        return $role_id == 2 ? true : false;
+    } return false;
 }
 
 function isAdmin(){
-    $role_id = $_SESSION["role_id"] ?? null;
-    return $role_id == 1 ? true : false;
+    if(isAuth()) {
+        $role_id = $_SESSION["role_id"] ?? null;
+        return $role_id == 1 ? true : false;
+    } return false;
 }
