@@ -29,4 +29,8 @@ class Helpers {
         $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); 
         return $value;
     }
+
+    public static function validateAge($age) {
+        if($age < 18 || $age > 65) return "age must be between 18 and 35";
+    }
 }
