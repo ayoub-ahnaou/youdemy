@@ -17,3 +17,8 @@ function isTeacher(){
     $role_id = $_SESSION["role_id"] ?? null;
     return $role_id == 2 ? true : false;
 }
+
+function isAdmin(){
+    $role_id = $_SESSION["role_id"] ?? null;
+    return $role_id == 1 ? true : false;
+}
