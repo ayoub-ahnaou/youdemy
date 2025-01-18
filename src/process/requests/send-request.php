@@ -1,5 +1,7 @@
 <?php
 require_once '../../../vendor/autoload.php';
+require_once "../../middlewares/access.php";
+if(isTeacher()) header("location: " . $_SERVER["HTTP_REFERER"]);
 
 use App\helpers\Helpers;
 use App\model\EnseignantModel;
@@ -32,10 +34,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $isRequestSent = $request->checkIfRequestSent($_SESSION["user_id"]);
         if($isRequestSent) {
             $err = "Plaese wait tell the admins accept your request! you already sent one";
+
+            // TODO: display message, and after 5s redirect to index page
+            // header("location: ../../app/pages/index.php");
+            
         } else {
             $request->createRequest($_SESSION["user_id"]);
             $enseignant = new EtudiantModel();
             $enseignant->upgradeUserInfos($_SESSION["user_id"], $age, $gender, $address, $cin, $specialite, $acad_level, $avatar);
+
+            header("location: ../../app/pages/index.php");
         }
     }
 }
