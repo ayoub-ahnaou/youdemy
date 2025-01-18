@@ -54,6 +54,30 @@
             </form>
         </div>
     </div>
+
+    <script>
+        function addTag() {
+            const container = document.getElementById('tagsContainer');
+            const tagTemplate = document.querySelector('.tag-item').cloneNode(true);
+
+            // Clear input values
+            tagTemplate.querySelectorAll('input').forEach(input => {
+                input.value = '';
+            });
+
+            container.appendChild(tagTemplate);
+        }
+
+        function removeTag(button) {
+            const tagItem = button.closest('.tag-item');
+            const container = document.getElementById('tagsContainer');
+
+            // Only remove if there's more than one category
+            if (container.children.length > 1) {
+                tagItem.remove();
+            }
+        }
+    </script>
 </body>
 
 </html>
