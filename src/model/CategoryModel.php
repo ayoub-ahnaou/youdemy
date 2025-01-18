@@ -47,6 +47,17 @@ class CategoryModel {
         }
     }
 
+    public function getCategoryByID($category_id) {
+        $sql = "SELECT * FROM categories WHERE category_id = :category_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([":category_id" =>$category_id]);
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            throw new Exception("Failed to get category by id: " . $e->getMessage());
+        }
+    }
+
     public function deleteCategory($category_id) {
         $sql = "DELETE FROM categories WHERE category_id = :category_id";
         try {
