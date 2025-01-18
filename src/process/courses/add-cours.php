@@ -11,6 +11,9 @@ use App\model\TagModel;
 use App\model\TagsCoursesModel;
 use App\model\VideoCours;
 
+$categoryModel = new CategoryModel();
+$categories = $categoryModel->getAllCategories();
+
 $title = $subtitle = $langues = $description = $type = $category = $image = $tags = $video = $document = "";
 $title_err = $subtitle_err = $langues_err = $description_err = $type_err = $category_err = $image_err = $tags_err = $video_err = $document_err = $err = "";
 
@@ -185,7 +188,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <label name="acad_level_err" class="text-red-600"><?= $image_err ?></label>
                             </div>
-
                         </div>
                     </div>
 
@@ -228,6 +230,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </form>
         </div>
+
+
 
     </div>
     <?php require_once "../../app/components/footer.php"; ?>
