@@ -5,6 +5,8 @@ use App\helpers\FileUploader;
 use App\helpers\Helpers;
 use App\model\CategoryModel;
 
+include_once "../../middlewares/access.php"; 
+if(!isAdmin()) header("location: ./index.php"); 
 require_once '../../../vendor/autoload.php';
 
 $name = $image = $name_err = $image_err = "";
