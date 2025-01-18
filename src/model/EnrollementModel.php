@@ -27,4 +27,18 @@ class EnrollementModel {
             throw new Exception("failed to enroll in cours: " . $e->getMessage());
         }
     }
+
+    public function isUserEnrolledInCours($cours_id, $user_id) {
+        $sql = "SELECT * FROM enrollements WHERE cours_id = :cours_id AND user_id = :user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([
+                ":cours_id" => $cours_id, 
+                ":user_id" => $user_id
+            ]);
+            return $stmt->rowCount();
+        } catch (Exception $e) {
+            throw new Exception("failed to enroll in cours: " . $e->getMessage());
+        }
+    }
 }
