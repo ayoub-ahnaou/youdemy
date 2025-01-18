@@ -12,6 +12,8 @@ $cours = $coursModel->getCourseById($cours_id);
 $tagModel = new TagsCoursesModel();
 $tags = $tagModel->getTagsByCoursID($cours_id);
 
+$enrollModel = new EnrollementModel();
+
 ?>
 
 <!DOCTYPE html>
