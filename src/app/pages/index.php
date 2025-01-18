@@ -1,3 +1,7 @@
+<?php
+require_once "../../middlewares/access.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
