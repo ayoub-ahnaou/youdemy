@@ -4,6 +4,8 @@ use App\class\Person;
 use App\helpers\Helpers;
 use App\model\PersonModel;
 
+require_once '../../../vendor/autoload.php';
+
 $firstname = "";
 $lastname = "";
 $phone = "";
