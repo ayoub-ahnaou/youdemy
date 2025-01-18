@@ -1,7 +1,3 @@
-<?php
-include '../../middlewares/access.php';
-?>
-
 <nav class="bg-gray-800 text-white shadow-md sticky top-0 z-10">
     <div class="container mx-auto px-4 flex items-center justify-between h-16">
         <!-- Left Section: Logo -->
