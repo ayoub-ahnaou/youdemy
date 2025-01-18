@@ -14,6 +14,11 @@ use App\model\VideoCours;
 $categoryModel = new CategoryModel();
 $categories = $categoryModel->getAllCategories();
 
+$tagModel = new TagModel();
+$allTags = $tagModel->getAllTags();
+
+$tagsCousesModel = new TagsCoursesModel();
+
 $title = $subtitle = $langues = $description = $type = $category = $image = $tags = $video = $document = "";
 $title_err = $subtitle_err = $langues_err = $description_err = $type_err = $category_err = $image_err = $tags_err = $video_err = $document_err = $err = "";
 
