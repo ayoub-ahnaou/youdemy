@@ -1,3 +1,21 @@
+<?php
+require_once '../../../vendor/autoload.php';
+
+use App\class\Category;
+use App\helpers\FileUploader;
+use App\helpers\Helpers;
+use App\model\CategoryModel;
+
+$category_id = $_GET["category_id"];
+$categoryModel = new CategoryModel();
+$categoryDetails = $categoryModel->getCategoryByID($category_id);
+
+$name = $categoryDetails["category_name"];
+$image["path"] = $categoryDetails["image"];
+$name_err = $image_err = "";
+
+?>
+
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
