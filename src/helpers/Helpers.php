@@ -44,4 +44,10 @@ class Helpers {
           return 'Invalid Timestamp'; 
         }
     }
+
+    public static function checkSession() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
 }
