@@ -51,4 +51,19 @@ class CoursModel {
             throw new Exception("failed to delete cours: " . $e->getMessage());
         }
     }
+
+    public function getAllInstractorsCourses($user_id) {
+        $sql = "SELECT c.*, firstname, lastname, email, gender, specialite, academic_level, category_name 
+                FROM courses c
+                JOIN users u ON u.user_id = c.user_id
+                JOIN categories ca ON ca.category_id = c.category_id
+                AND c.user_id = :user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([":user_id" => $user_id]);
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            throw new Exception("Failed to retieve courses students: " . $e->getMessage());
+        }
+    }
 }
