@@ -24,6 +24,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tags = $_POST["course_tags"];
     $image = FileUploader::handleImageUpload($_FILES["thumbnails"]);
 
+    if ($type == "document") {
+        if (!isset($_FILES["document"]) || $_FILES["document"]["error"] !== UPLOAD_ERR_OK) {
+            $document_err = "Please upload a PDF document";
+        } else {
+            $document = FileUploader::handlePdfUpload($_FILES["document"]);
+            if (!$document['success']) {
+                $document_err = $document['message'];
+            }
+        }
+    }
+
     if ($type == "video") {
         $video = $_POST["video"];
     }
