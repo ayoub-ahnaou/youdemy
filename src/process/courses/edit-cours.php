@@ -34,6 +34,7 @@ $image = $cours_details["image"];
 $video = $type == "video" ? $cours_details["content"] : null;
 $document = $type == "document" ? $cours_details["content"] : null;
 
+
 ?>
 
 <!DOCTYPE html>
