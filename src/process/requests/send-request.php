@@ -1,4 +1,25 @@
 <?php
+require_once '../../../vendor/autoload.php';
+require_once "../../middlewares/access.php";
+if(isTeacher()) header("location: " . $_SERVER["HTTP_REFERER"]);
+
+use App\helpers\Helpers;
+use App\model\EnseignantModel;
+use App\model\EtudiantModel;
+use App\model\RequestModel;
+
+$age = $gender = $address = $cin = $specialite = $acad_level = $avatar = "";
+$age_err = $gender_err = $address_err = $cin_err = $specialite_err = $acad_level_err = $avatar_err = $err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $age = Helpers::filterInput($_POST["age"]);
+    $gender = Helpers::filterInput($_POST["gender"]);
+    $address = Helpers::filterInput($_POST["address"]);
+    $cin = Helpers::filterInput($_POST["cin"]);
+    $specialite = Helpers::filterInput($_POST["specialite"]);
+    $acad_level = Helpers::filterInput($_POST["acad_level"]);
+    $avatar = "path image";
+}
 ?>
 
 <!DOCTYPE html>
