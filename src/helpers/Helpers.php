@@ -23,4 +23,10 @@ class Helpers {
     public static function comparePasswords($password, $password_repeat) {
         return $password != $password_repeat ? false : true;
     }
+
+    public static function filterInput($value) {
+        $value = trim($value); 
+        $value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8'); 
+        return $value;
+    }
 }
