@@ -50,6 +50,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $user = new Person($firstname, $lastname, $email, $phone, $password_hashed);
                 $userModel->register($user);
                 
+                $firstname = $lastname = $phone = $email = $password = $password_repeat = "";
+                $firstname_err = $lastname_err = $phone_err = $email_err = $password_err = $password_repeat_err = "";
+
+                header("location: ./login.php");
             }
         }
     }
