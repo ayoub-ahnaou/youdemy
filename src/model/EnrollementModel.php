@@ -41,4 +41,18 @@ class EnrollementModel {
             throw new Exception("failed to enroll in cours: " . $e->getMessage());
         }
     }
+
+    public function getAllEnrollements() {
+        $sql = "SELECT e.*, firstname, lastname, email, title, e.created_at
+            FROM enrollements e
+            JOIN courses c ON c.cours_id = e.cours_id
+            JOIN users u ON u.user_id = e.user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            throw new Exception("failed to get enrollemnts: " . $e->getMessage());
+        }
+    }
 }
