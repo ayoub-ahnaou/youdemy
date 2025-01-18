@@ -1,4 +1,5 @@
 <?php
+namespace App\class;
 
 class Tag {
     private string $tag_name;

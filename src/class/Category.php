@@ -1,8 +1,9 @@
 <?php
+namespace App\class;
 
 class Category {
     private string $category_name;
-    private string $image;
+    private $image;
 
     public function __construct($category_name, $image){
         $this->category_name = $category_name;
