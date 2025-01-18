@@ -14,6 +14,20 @@ use App\model\VideoCours;
 $title = $subtitle = $langues = $description = $type = $category = $image = $tags = $video = $document = "";
 $title_err = $subtitle_err = $langues_err = $description_err = $type_err = $category_err = $image_err = $tags_err = $video_err = $document_err = $err = "";
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = Helpers::filterInput($_POST["title"]);
+    $subtitle = Helpers::filterInput($_POST["subtitle"]);
+    $langues = Helpers::filterInput($_POST["langues"]);
+    $description = Helpers::filterInput($_POST["description"]);
+    $type = Helpers::filterInput($_POST["type"]);
+    $category = Helpers::filterInput($_POST["category"]);
+    $tags = $_POST["course_tags"];
+    
+
+    if ($type == "video") {
+        $video = $_POST["video"];
+    }
+}
 ?>
 
 <!DOCTYPE html>
