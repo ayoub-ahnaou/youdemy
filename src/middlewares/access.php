@@ -7,3 +7,8 @@ function isAuth() {
     if($user_id) return true;
     else return false;
 }
+
+function isStudent(){
+    $role_id = $_SESSION["role_id"] ?? null;
+    return $role_id == 3 ? true : false;
+}
