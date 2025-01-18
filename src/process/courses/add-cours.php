@@ -255,6 +255,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
 
+        <script>
+            function handleTypeChange(value) {
+                const videoInput = document.getElementById("video-input");
+                const documentInput = document.getElementById("document-input");
+
+                // Hide both inputs first
+                videoInput.classList.add("hidden");
+                documentInput.classList.add("hidden");
+
+                // Show the appropriate input based on selection
+                if (value === "video") {
+                    videoInput.classList.remove("hidden");
+                } else if (value === "document") {
+                    documentInput.classList.remove("hidden");
+                }
+            }
+        </script>
+
 
 
     </div>
