@@ -33,4 +33,14 @@ class AdminModel {
         }
     }
 
+    public function deleteEnseignantRequest($user_id) {
+        $sql = "DELETE FROM requests WHERE user_id = :user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([":user_id" => $user_id])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Request failed: " . $e->getMessage());
+        }
+    }
+
 }
