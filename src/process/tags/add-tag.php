@@ -1,3 +1,30 @@
+<?php
+
+use App\class\Tag;
+use App\helpers\Helpers;
+use App\model\TagModel;
+
+require_once '../../../vendor/autoload.php';
+
+$tags = $tags_err = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $tags = $_POST["tag_name"];
+    var_dump($tags);
+    
+    if (empty($tags)) $tags_err = "Tag name is required";
+    else {
+        $tagModel = new TagModel();
+        foreach($tags as $tag){
+            $tag = Helpers::filterInput($tag);
+            $tagModel->createTag(new Tag($tag));
+        }
+        header("Location: ../../app/pages/list-tags.php");
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
