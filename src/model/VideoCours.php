@@ -7,7 +7,7 @@ use App\interfaces\CoursInterface;
 use Exception;
 use PDO;
 
-class VideoCours extends CoursModel {
+class VideoCours extends CoursModel implements CoursInterface {
     private PDO $connection;
 
     public function __construct(){
