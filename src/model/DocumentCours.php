@@ -37,4 +37,19 @@ class DocumentCours extends CoursModel implements CoursInterface {
         }
     }
 
+    public function displayCours($cours_id) {
+        $sql = "SELECT c.*, firstname, lastname, email, gender, category_name 
+                FROM courses c
+                JOIN users u ON u.user_id = c.user_id
+                JOIN categories ca ON ca.category_id = c.category_id
+                WHERE cours_id = :cours_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([":cours_id" => $cours_id]);
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            throw new Exception("failed to retrieve cours details: " . $e->getMessage());
+        }
+    }
+
 }
