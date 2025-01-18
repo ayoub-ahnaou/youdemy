@@ -33,4 +33,17 @@ class RequestModel {
             throw new Exception("Request failed: " . $e->getMessage());
         }
     }
+
+    // retrieve all users requests
+    public function getAllRequests() {
+        $sql = "SELECT u.*, created_at FROM users u JOIN requests r ON r.user_id = u.user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            throw new Exception("Request failed: " . $e->getMessage());
+        }
+    }
 }
