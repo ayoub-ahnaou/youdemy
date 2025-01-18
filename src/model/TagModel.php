@@ -1,10 +1,10 @@
 <?php
 namespace App\model;
 
+use App\class\Tag;
 use App\config\Database;
 use Exception;
 use PDO;
-use Tag;
 
 class TagModel {
     private PDO $connection;
