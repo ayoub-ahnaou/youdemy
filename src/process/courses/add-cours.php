@@ -1,4 +1,18 @@
 <?php
+require_once '../../../vendor/autoload.php';
+session_start();
+
+use App\class\Cours;
+use App\helpers\FileUploader;
+use App\helpers\Helpers;
+use App\model\CategoryModel;
+use App\model\DocumentCours;
+use App\model\TagModel;
+use App\model\TagsCoursesModel;
+use App\model\VideoCours;
+
+$title = $subtitle = $langues = $description = $type = $category = $image = $tags = $video = $document = "";
+$title_err = $subtitle_err = $langues_err = $description_err = $type_err = $category_err = $image_err = $tags_err = $video_err = $document_err = $err = "";
 
 ?>
 
