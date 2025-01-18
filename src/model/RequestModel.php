@@ -20,4 +20,17 @@ class RequestModel {
             throw new Exception("Request failed: " . $e->getMessage());
         }
     }
+
+    // check if the user already sent a request to be enseignant
+    public function checkIfRequestSent($user_id) {
+        $sql = "SELECT * FROM requests WHERE user_id = (:user_id)";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([":user_id" => $user_id]);
+            if($stmt->rowCount() > 0) return true;
+            else return false;
+        } catch (Exception $e) {
+            throw new Exception("Request failed: " . $e->getMessage());
+        }
+    }
 }
