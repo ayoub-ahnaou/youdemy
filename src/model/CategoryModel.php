@@ -33,11 +33,14 @@ class CategoryModel {
     }
 
     public function updateCategory(Category $category, $category_id) {
-        $sql = "UPDATE categories SET category_name = :category_name WHERE category_id = :category_id";
+        $sql = "UPDATE categories SET category_name = :category_name, image = :image 
+            WHERE category_id = :category_id";
         try {
             $stmt = $this->connection->prepare($sql);
             if($stmt->execute([
-                ":category_name" => $category->__get("category_name")
+                ":category_name" => $category->__get("category_name"),
+                ":image" => $category->__get("image"),
+                ":category_id" => $category_id,
             ])) return true;
         } catch (Exception $e) {
             throw new Exception("Failed update category: " . $e->getMessage());
