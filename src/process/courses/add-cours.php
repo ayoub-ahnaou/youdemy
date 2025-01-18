@@ -193,6 +193,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <label name="acad_level_err" class="text-red-600"><?= $image_err ?></label>
                             </div>
+
+                            <div class="relative">
+                                <label class="text-gray-500" for="tagSelect">Tags *</label>
+                                <select class="bg-gray-100 rounded-sm p-1 w-full" id="tagSelect">
+                                    <option value="">Select a tag</option>
+                                    <?php foreach ($allTags as $tag) : ?>
+                                        <option value="<?= $tag["tag_id"]; ?>" data-tag-name="<?= $tag["tag_name"] ?>"><?= $tag["tag_name"] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <label name="tag_err" class="text-red-600"><?= $tags_err ?></label>
+                            </div>
+
+                            <!-- Selected Tags Container -->
+                            <div class="flex flex-wrap gap-2 mt-1" id="selectedTags">
+                                <!-- Tags will be dynamically added here -->
+                            </div>
+
+                            <!-- Hidden Input for Form Submission -->
+                            <input type="hidden" name="course_tags" id="courseTags" value="" required>
                         </div>
                     </div>
 
