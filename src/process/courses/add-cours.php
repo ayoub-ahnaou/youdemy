@@ -53,6 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($type == "document") {
         if (empty($document)) $document_err = "Document should not be empty";
     }
+
+    if (empty($title_err) && empty($subtitle_err) && empty($langues_err) && empty($description_err) && empty($type_err) && empty($category_err) && empty($image_err) && empty($tags_err) && empty($video_err) && empty($document_err)) {
+        $user_id = $_SESSION["user_id"];
+    }
 }
 ?>
 
