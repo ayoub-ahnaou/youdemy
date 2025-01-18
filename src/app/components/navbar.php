@@ -58,6 +58,14 @@ include '../../middlewares/access.php';
                 <!-- <span class="bg-pink-500 rounded-full px-1 absolute -top-1 -right-1 text-[10px]">0</span> -->
             </a>
             <?php } ?>
+
+            <?php if(!isTeacher() || !isAdmin()) { ?>
+            <a title="request to be instractor" href="../../process/requests/send-request.php" class="flex items-center gap-2 relative">
+            <img src="../assets/svgs/request.svg" class="h-4" alt="">
+                <span class="text-xs">Request Admin</span>
+                <!-- <span class="bg-pink-500 rounded-full px-1 absolute -top-1 -right-1 text-[10px]">0</span> -->
+            </a>
+            <?php } ?>
         </div>
     </div>
 </nav>
