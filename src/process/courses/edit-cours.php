@@ -70,6 +70,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($type == "video") {
         if (empty($video)) $video_err = "Video should not be empty";
     }
+
+    if (
+        empty($title_err) && empty($subtitle_err) && empty($langues_err) && empty($description_err) && empty($type_err) 
+        && empty($category_err) && empty($image_err) && empty($video_err) && empty($document_err)) 
+        {
+            
+        $user_id = $_SESSION["user_id"];
+
+        if ($type == "document") {
+            $cours = new Cours($title, $subtitle, $langues, $description, $type, $category, $image["path"], $user_id, $document["path"], null);
+            $coursDocument = new DocumentCours();
+            $coursDocument->updateCours($cours, $cours_id);
+        }
+        if ($type == "video") {
+            $cours = new Cours($title, $subtitle, $langues, $description, $type, $category, $image["path"], $user_id, null, $video);
+            $coursDocument = new VideoCours();
+            $coursDocument->updateCours($cours, $cours_id);
+        }
+
+        $title = $subtitle = $langues = $description = $type = $category = $image = $video = $document = "";
+        $title_err = $subtitle_err = $langues_err = $description_err = $type_err = $category_err = $image_err = $video_err = $document_err = $err = "";
+
+        header("location: ../../app/pages/instractors-courses.php");
+    } else {
+        var_dump($title, $subtitle, $langues, $description, $type, $category, $image, $video, $document);
+    }
 }
 ?>
 
