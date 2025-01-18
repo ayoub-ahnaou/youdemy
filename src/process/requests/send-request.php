@@ -1,7 +1,5 @@
 <?php
 require_once '../../../vendor/autoload.php';
-require_once "../../middlewares/access.php";
-if(isTeacher()) header("location: " . $_SERVER["HTTP_REFERER"]);
 
 use App\helpers\Helpers;
 use App\model\EnseignantModel;
@@ -19,6 +17,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $specialite = Helpers::filterInput($_POST["specialite"]);
     $acad_level = Helpers::filterInput($_POST["acad_level"]);
     $avatar = "path image";
+
+    if(empty($age)) $age_err = "age should not be empty";
+    if(!empty($age)) $age_err = Helpers::validateAge($age);
+    if(empty($gender)) $gender_err = "gender should not be empty";
+    if(empty($address)) $address_err = "address should not be empty";
+    if(empty($cin)) $cin_err = "cin should not be empty";
+    if(empty($specialite)) $specialite_err = "specialite should not be empty";
+    if(empty($acad_level)) $acad_level_err = "academic level should not be empty";
+    if(empty($avatar)) $avatar_err = "avatar should not be empty";
+
+    if(empty($age_err) && empty($gender_err) && empty($address_err) && empty($cin_err) && empty($specialite_err) && empty($acad_level_err) && empty($avatar_err)){
+        $request = new RequestModel();
+        $isRequestSent = $request->checkIfRequestSent($_SESSION["user_id"]);
+        if($isRequestSent) {
+            $err = "Plaese wait tell the admins accept your request! you already sent one";
+        } else {
+            $request->createRequest($_SESSION["user_id"]);
+            $enseignant = new EtudiantModel();
+            $enseignant->upgradeUserInfos($_SESSION["user_id"], $age, $gender, $address, $cin, $specialite, $acad_level, $avatar);
+        }
+    }
 }
 ?>
 
