@@ -43,7 +43,7 @@ class EnrollementModel {
     }
 
     public function getAllEnrollements() {
-        $sql = "SELECT e.*, firstname, lastname, email, title, e.created_at
+        $sql = "SELECT e.*, firstname, lastname, email, title, subtitle, e.created_at, image
             FROM enrollements e
             JOIN courses c ON c.cours_id = e.cours_id
             JOIN users u ON u.user_id = e.user_id";
