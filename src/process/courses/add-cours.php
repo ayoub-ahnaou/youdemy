@@ -61,11 +61,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $cours = new Cours($title, $subtitle, $langues, $description, $type, $category, $image["path"], $user_id, $document["path"], null);
             $coursDocument = new DocumentCours();
             $res = $coursDocument->createCours($cours);
+            if ($res) {
+                $tags_array = array_filter(explode(",", $tags));
+                foreach ($tags_array as $tag_id) {
+                    $tagsCousesModel->assignTagToCourse($tag_id, $res);
+                }
+            }
         }
         if ($type == "video") {
             $cours = new Cours($title, $subtitle, $langues, $description, $type, $category, $image["path"], $user_id, null, $video);
             $coursDocument = new VideoCours();
             $res = $coursDocument->createCours($cours);
+            if ($res) {
+                $tags_array = array_filter(explode(",", $tags));
+                foreach ($tags_array as $tag_id) {
+                    $tagsCousesModel->assignTagToCourse($tag_id, $res);
+                }
+            }
         }
     }
 }
