@@ -1,5 +1,7 @@
 <?php
 require_once "../../../vendor/autoload.php";
+include_once "../../middlewares/access.php"; 
+if(!isAuth()) header("location: ./index.php"); 
 
 use App\model\CoursModel;
 use App\model\EnrollementModel;
