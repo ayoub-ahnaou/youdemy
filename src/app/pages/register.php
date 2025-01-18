@@ -29,6 +29,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = Helpers::filterInput($_POST["email"]);
     $password = Helpers::filterInput($_POST["password"]);
     $password_repeat = Helpers::filterInput($_POST["password_repeat"]);
+
+    if(empty($firstname)) $firstname_err = "firstname should not be empty";
+    if(empty($lastname)) $lastname_err = "lastname should not be empty";
+    if(empty($phone)) $phone_err = "phone should not be empty";
+    if(empty($email)) $email_err = "email should not be empty";
+    if(empty($password)) $password_err = "password should not be empty";
+    if(empty($password_repeat)) $password_repeat_err = "password confirm should not be empty";
 }
 
 ?>
