@@ -14,6 +14,25 @@ $name = $categoryDetails["category_name"];
 $image["path"] = $categoryDetails["image"];
 $name_err = $image_err = "";
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = Helpers::filterInput($_POST["category_name"]);
+    $image = FileUploader::handleImageUpload($_FILES['category_image']);
+
+    if (empty($name)) $name_err = "Category name is required";
+    if (empty($image)) $image_err = "Category name is required";
+
+    if (!empty($image) && !empty($name)) {
+        if (!$image["success"]) $image_err = $image["message"];
+        else {
+            $categoryModel = new CategoryModel();
+            $category = new Category($name, $image["path"]);
+            $categoryModel->updateCategory($category, $category_id);
+
+            header("Location: ../../app/pages/list-categories.php");
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
