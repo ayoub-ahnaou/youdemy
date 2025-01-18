@@ -1,5 +1,7 @@
 <?php
 require_once '../../../vendor/autoload.php';
+include_once "../../middlewares/access.php"; 
+if(!isAdmin()) header("location: ./index.php"); 
 
 use App\helpers\Helpers;
 use App\model\CoursModel;
