@@ -19,4 +19,8 @@ class Helpers {
     public static function verifyPassword($password, $passwordHashed) {
         return password_verify($password, $passwordHashed);
     }
+
+    public static function comparePasswords($password, $password_repeat) {
+        return $password != $password_repeat ? false : true;
+    }
 }
