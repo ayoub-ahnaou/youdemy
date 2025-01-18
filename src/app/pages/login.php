@@ -23,6 +23,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if($user->isEmailExist($email) != 0){
             $res = $user->login($email, $password);
             if(!$res) $password_err = "Password incorrect";
+            else {
+                session_start();
+                $_SESSION["user_id"] = $res["user_id"];
+                if($res["role_id"] == 1) header("location: ./dashboard.php");
+                if($res["role_id"] == 2) header("location: ./instractor-dashboard.php");
+                if($res["role_id"] == 3) header("location: ./courses.php");
+            }
         } else {
             $err = "Email or password incorrect";
         }
