@@ -24,4 +24,17 @@ class TagsCoursesModel {
             throw new Exception("failed to add tag to cours: " . $e->getMessage());
         }
     }
+
+    public function removeTagFromCours($cours_id, $tag_id) {
+        $sql = "DELETE FROM courses_tags WHERE cours_id = :cours_id AND tag_id = :tag_id";
+        try {
+            $stm = $this->connection->prepare($sql);
+            $stm->execute([
+                ':cours_id' => $cours_id,
+                ':tag_id' => $tag_id,
+            ]);
+        } catch (Exception $e) {
+            throw new Exception("Error removing tag from cours: " . $e->getMessage());
+        }
+    }
 }
