@@ -1,10 +1,11 @@
 <?php
+require_once '../../../vendor/autoload.php';
+include_once "../../middlewares/access.php"; 
+if(isAuth()) header("location: ./index.php"); 
 
 use App\class\Person;
 use App\helpers\Helpers;
 use App\model\PersonModel;
-
-require_once '../../../vendor/autoload.php';
 
 $firstname = "";
 $lastname = "";
