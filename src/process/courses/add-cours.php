@@ -301,6 +301,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 renderTags();
             }
 
+            function renderTags() {
+                selectedTags.innerHTML = "";
+                courseTagsInput.value = "";
+
+                // Reset all options to visible
+                Array.from(tagSelect.options).forEach(option => {
+                    if (option.value !== "") {
+                        option.style.display = 'block';
+                    }
+                });
+
+                tags.forEach(tag => {
+                    // Create tag element
+                    const tagElement = document.createElement('div');
+                    tagElement.className = 'inline-flex items-center bg-gray-100 px-3 py-1 text-sm';
+
+                    // Add tag name
+                    const tagText = document.createElement('span');
+                    tagText.textContent = tag.name;
+                    tagElement.appendChild(tagText);
+
+                    // Add remove button
+                    const removeButton = document.createElement('button');
+                    removeButton.className = 'ml-2 text-gray-500 hover:text-gray-700 focus:outline-none';
+                    removeButton.textContent = '×';
+                    removeButton.onclick = () => removeTag(tag);
+                    tagElement.appendChild(removeButton);
+
+                    selectedTags.appendChild(tagElement);
+
+                    // Update hidden input
+                    courseTagsInput.value += (courseTagsInput.value ? ',' : '') + tag.id;
+
+                    // Hide the selected option
+                    const option = Array.from(tagSelect.options).find(opt => opt.value === tag.id);
+                    if (option) {
+                        option.style.display = 'none';
+                    }
+                });
+            }
+
             // Add event listener for select change
             tagSelect.addEventListener('change', addTagFromSelect);
         </script>
