@@ -296,6 +296,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
             }
 
+            function removeTag(tagToRemove) {
+                tags = tags.filter(tag => tag.id !== tagToRemove.id);
+                renderTags();
+            }
+
             // Add event listener for select change
             tagSelect.addEventListener('change', addTagFromSelect);
         </script>
