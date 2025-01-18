@@ -36,6 +36,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(empty($email)) $email_err = "email should not be empty";
     if(empty($password)) $password_err = "password should not be empty";
     if(empty($password_repeat)) $password_repeat_err = "password confirm should not be empty";
+
+    if(!empty($firstname) && !empty($lastname) && !empty($email) && !empty($password) && !empty($password_repeat)){
+        $userModel = new PersonModel();
+
+        if($userModel->isEmailExist($email) > 0) $email_err = "Email already exist, choose another one";
+        else {
+            if (!Helpers::comparePasswords($password, $password_repeat)) {
+                $password_repeat_err = "Password not matchs";
+            } else {
+                $password_hashed = Helpers::hashPassword($password);
+
+                $user = new Person($firstname, $lastname, $email, $phone, $password_hashed);
+                $userModel->register($user);
+                
+            }
+        }
+    }
 }
 
 ?>
