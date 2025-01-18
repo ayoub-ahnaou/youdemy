@@ -4,6 +4,8 @@ use App\class\Tag;
 use App\helpers\Helpers;
 use App\model\TagModel;
 
+include_once "../../middlewares/access.php"; 
+if(!isAdmin()) header("location: ./index.php"); 
 require_once '../../../vendor/autoload.php';
 
 $tags = $tags_err = "";
