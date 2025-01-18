@@ -1,3 +1,41 @@
+<?php
+require_once '../../../vendor/autoload.php';
+session_start();
+
+use App\class\Cours;
+use App\helpers\FileUploader;
+use App\helpers\Helpers;
+use App\model\CategoryModel;
+use App\model\CoursModel;
+use App\model\DocumentCours;
+use App\model\TagModel;
+use App\model\VideoCours;
+
+$categoryModel = new CategoryModel();
+$categories = $categoryModel->getAllCategories();
+
+$tagModel = new TagModel();
+$allTags = $tagModel->getAllTags();
+
+$title = $subtitle = $langues = $description = $type = $category = $image = $video = $document = "";
+$title_err = $subtitle_err = $langues_err = $description_err = $type_err = $category_err = $image_err = $video_err = $document_err = $err = "";
+
+$cours_id = $_GET["cours_id"];
+$coursModel = new CoursModel();
+$cours_details = $coursModel->getCourseById($cours_id);
+
+$title = $cours_details["title"];
+$subtitle = $cours_details["subtitle"];
+$langues = $cours_details["langues"];
+$description = $cours_details["description"];
+$type = $cours_details["type"];
+$category = $cours_details["category_id"];
+$image = $cours_details["image"];
+$video = $type == "video" ? $cours_details["content"] : null;
+$document = $type == "document" ? $cours_details["content"] : null;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
