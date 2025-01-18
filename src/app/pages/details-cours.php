@@ -25,6 +25,8 @@ $cours = $coursModel->getCourseById($cours_id);
 <body class="flex flex-col min-h-screen">
     <?php 
     require_once "../components/navbar.php";
+    $user_id = $_SESSION["user_id"];
+    $isEnroll = $enrollModel->isUserEnrolledInCours($cours_id, $user_id);
     ?>
 
     <?php if ($cours != null) { ?>
