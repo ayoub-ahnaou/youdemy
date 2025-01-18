@@ -1,3 +1,8 @@
+<?php
+include_once "../../middlewares/access.php"; 
+if(!isTeacher() || isAdmin()) header("location: ./index.php"); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,12 +31,6 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                         <span>My Courses</span>
-                    </a>
-                    <a href="./instractors-students.php" class="flex items-center space-x-3 text-gray-600 hover:text-red-600">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                        <span>Students</span>
                     </a>
                 </nav>
             </div>
@@ -69,54 +68,6 @@
                         </span>
                     </div>
                     <p class="text-3xl font-bold mt-4">4</p>
-                </div>
-            </div>
-
-            <!-- Recent Activity -->
-            <div class="bg-white rounded-lg shadow p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-xl font-bold">Recent Student Enrollements</h2>
-                    <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">View All</button>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full">
-                        <thead>
-                            <tr class="border-b">
-                                <th class="text-left py-3 px-4">Student</th>
-                                <th class="text-left py-3 px-4">Course</th>
-                                <th class="text-left py-3 px-4">Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b">
-                                <td class="py-3 px-4">
-                                    <div class="flex items-center">
-                                        <span>Alex Johnson</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-4">Advanced Machine Learning</td>
-                                <td class="py-3 px-4">Jan 15, 2024</td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-3 px-4">
-                                    <div class="flex items-center">
-                                        <span>Sarah Miller</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-4">Deep Learning Fundamentals</td>
-                                <td class="py-3 px-4">Jan 14, 2024</td>
-                            </tr>
-                            <tr>
-                                <td class="py-3 px-4">
-                                    <div class="flex items-center">
-                                        <span>Michael Smith</span>
-                                    </div>
-                                </td>
-                                <td class="py-3 px-4">Neural Networks Workshop</td>
-                                <td class="py-3 px-4">Jan 13, 2024</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
