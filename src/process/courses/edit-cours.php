@@ -59,6 +59,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($type == "video") {
         $video = $_POST["video"];
     }
+
+    if (empty($title)) $title_err = "title should not be empty";
+    if (empty($subtitle)) $subtitle_err = "subtitle should not be empty";
+    if (empty($langues)) $langues_err = "langues should not be empty";
+    if (empty($description)) $description_err = "description should not be empty";
+    if (empty($type)) $type_err = "type should not be empty";
+    if (empty($category)) $category_err = "category level should not be empty";
+    if (empty($image)) $image_err = "image should not be empty";
+    if ($type == "video") {
+        if (empty($video)) $video_err = "Video should not be empty";
+    }
 }
 ?>
 
