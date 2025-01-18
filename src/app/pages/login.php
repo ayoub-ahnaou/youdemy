@@ -1,3 +1,23 @@
+<?php
+require_once '../../../vendor/autoload.php';
+
+use App\helpers\Helpers;
+
+$email = "";
+$password = "";
+$email_err = "";
+$password_err = "";
+$err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = Helpers::filterInput($_POST["email"]);
+    $password = Helpers::filterInput($_POST["password"]);
+
+    if(empty($email)) $email_err = "this filed should not be empty";
+    if(empty($password)) $password_err = "this filed should not be empty";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +27,7 @@
     <title>Login - Youdemy</title>
     <link rel="stylesheet" href="../css/input.css">
     <link rel="stylesheet" href="../css/output.css">
-
+    
 </head>
 
 <body class="">
