@@ -273,7 +273,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         </script>
 
+        <script>
+            const tagSelect = document.getElementById('tagSelect');
+            const selectedTags = document.getElementById('selectedTags');
+            const courseTagsInput = document.getElementById('courseTags');
+            let tags = [];
 
+            function addTagFromSelect() {
+                const selectedOption = tagSelect.options[tagSelect.selectedIndex];
+                if (!selectedOption.value) return;
+
+                const tagId = selectedOption.value;
+                const tagName = selectedOption.getAttribute('data-tag-name');
+
+                if (!tags.some(tag => tag.id === tagId)) {
+                    tags.push({
+                        id: tagId,
+                        name: tagName
+                    });
+                    renderTags();
+                    tagSelect.selectedIndex = 0;
+                }
+            }
+
+            // Add event listener for select change
+            tagSelect.addEventListener('change', addTagFromSelect);
+        </script>
 
     </div>
     <?php require_once "../../app/components/footer.php"; ?>
