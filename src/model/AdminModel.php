@@ -12,4 +12,14 @@ class AdminModel {
         $this->connection = Database::getInstance()->getConnection();
     }
 
+    public function acceptEnseignantRequest($user_id) {
+        $sql = "UPDATE users SET role_id = 2, isRequested = 1 WHERE user_id = :user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([":user_id" => $user_id])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Request failed: " . $e->getMessage());
+        }
+    }
+
 }
