@@ -9,6 +9,9 @@ $cours_id = isset($_GET["cours_id"]) ? $_GET["cours_id"] : '';
 $coursModel = new CoursModel();
 $cours = $coursModel->getCourseById($cours_id);
 
+$tagModel = new TagsCoursesModel();
+$tags = $tagModel->getTagsByCoursID($cours_id);
+
 ?>
 
 <!DOCTYPE html>
