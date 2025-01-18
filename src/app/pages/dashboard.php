@@ -1,3 +1,8 @@
+<?php 
+include_once "../../middlewares/access.php"; 
+if(!isAdmin()) header("location: ./index.php"); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
