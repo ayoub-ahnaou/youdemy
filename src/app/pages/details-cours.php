@@ -1,6 +1,14 @@
 <?php
 require_once "../../../vendor/autoload.php";
 
+use App\model\CoursModel;
+use App\model\EnrollementModel;
+use App\model\TagsCoursesModel;
+
+$cours_id = isset($_GET["cours_id"]) ? $_GET["cours_id"] : '';
+$coursModel = new CoursModel();
+$cours = $coursModel->getCourseById($cours_id);
+
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +23,9 @@ require_once "../../../vendor/autoload.php";
 </head>
 
 <body class="flex flex-col min-h-screen">
-    <?php require_once "../components/navbar.php"; ?>
+    <?php 
+    require_once "../components/navbar.php";
+    ?>
 
     <?php if ($cours != null) { ?>
         <!-- Navigation Breadcrumb -->
@@ -93,7 +103,25 @@ require_once "../../../vendor/autoload.php";
                 <?php } ?>
             </div>
 
-            
+            <!-- Right Column -->
+            <div class="lg:w-1/3">
+                <div class="bg-gray-100 rounded-lg p-6 sticky top-16">
+                    <div class="aspect-video bg-gray-700 rounded-lg mb-6 flex items-center justify-center">
+                        <img src="../../../<?= $cours["image"] ?>" alt="Course Preview" class="rounded-lg" />
+                    </div>
+                    <?php if($isEnroll == 0) { ?>
+                    <a href="../../process/enrollements/enroll.php?user_id=<?= $user_id ?>&cours_id=<?= $cours_id ?>" class="">
+                        <button class="w-full bg-black text-white py-3 rounded-lg mb-2">Enroll now - <span class="text-yellow-400 text-xs">Free</span></button>
+                    </a>
+                    <?php } ?>
+
+                    <?php if($isEnroll > 0) { ?>
+                    <div class="text-green-600 p-1">
+                        You enrolled in this Course
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
         </main>
     <?php } ?>
 
