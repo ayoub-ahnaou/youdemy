@@ -33,4 +33,15 @@ class Helpers {
     public static function validateAge($age) {
         if($age < 18 || $age > 65) return "age must be between 18 and 35";
     }
+
+    public static function formatTimestamp($timestamp, $format = 'Y-m-d H:i:s') {
+        if (empty($timestamp)) return null;
+        try {
+          $date = new DateTime($timestamp); 
+          return $date->format($format);
+        } catch (Exception $e) {
+          error_log("Error formatting timestamp: " . $e->getMessage());
+          return 'Invalid Timestamp'; 
+        }
+    }
 }
