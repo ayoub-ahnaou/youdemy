@@ -37,4 +37,18 @@ class TagsCoursesModel {
             throw new Exception("Error removing tag from cours: " . $e->getMessage());
         }
     }
+
+    public function getTagsByCoursID($cours_id) {
+        $sql = "SELECT t.* FROM tags t
+            JOIN courses_tags ct
+            ON t.tag_id = ct.tag_id
+            AND ct.cours_id = :cours_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([":cours_id" => $cours_id]);
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            throw new Exception("failed to get tags by course: " .$e->getMessage());
+        }
+    }
 }
