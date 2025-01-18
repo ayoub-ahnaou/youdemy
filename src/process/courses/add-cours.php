@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = Helpers::filterInput($_POST["type"]);
     $category = Helpers::filterInput($_POST["category"]);
     $tags = $_POST["course_tags"];
-    
+    $image = FileUploader::handleImageUpload($_FILES["thumbnails"]);
 
     if ($type == "video") {
         $video = $_POST["video"];
