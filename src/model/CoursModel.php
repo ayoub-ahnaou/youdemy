@@ -40,4 +40,15 @@ class CoursModel {
             throw new Exception("failed to get cours: " . $e->getMessage());
         }
     }
+
+    public function deleteCours($cours_id) {
+        $sql = "DELETE FROM courses WHERE cours_id = :cours_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([":cours_id" => $cours_id])) return true;
+            return false;
+        } catch (Exception $e) {
+            throw new Exception("failed to delete cours: " . $e->getMessage());
+        }
+    }
 }
