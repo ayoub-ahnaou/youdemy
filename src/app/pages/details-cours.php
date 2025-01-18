@@ -99,7 +99,7 @@ $enrollModel = new EnrollementModel();
 
                     <?php if($cours["type"] == "document") { ?>
                     <div class="bg-gray-50 text-gray-700 p-4">
-                        Click <a target="_blank" href="../../../<?= $cours["content"]; ?>" class="text-red-500 font-bold hover:underline">here</a> to read the cours.
+                        Click <a target="_blank" href="../../../<?= $cours["content"]; ?>" class="text-red-500 font-bold hover:underline">here</a> to read the cours document.
                     </div>
                     <?php } ?>
                 </div>
@@ -110,7 +110,7 @@ $enrollModel = new EnrollementModel();
                 <?php } ?>
             </div>
 
-            <!-- Right Column -->
+            <!-- implemntation of student's enrollements -->
             <div class="lg:w-1/3">
                 <div class="bg-gray-100 rounded-lg p-6 sticky top-16">
                     <div class="aspect-video bg-gray-700 rounded-lg mb-6 flex items-center justify-center">
