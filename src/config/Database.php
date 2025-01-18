@@ -1,28 +1,32 @@
 <?php
+namespace App\config;
+use PDO, Exception, PDOException;
 
 class Database {
     
-    private $connection;
-    private static $instance = NULL;
+    private static $instance;
+    private $pdo;
 
-    private function __construct(){
+    private function __construct() {
         try {
-            $this->connection = new PDO("mysql:host=localhost;dbname=youdemy_db", 'root', '');
-            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->connection->setAttribute(PDO::FETCH_ASSOC, PDO::ATTR_DEFAULT_FETCH_MODE);
-
-            echo "Database connected";
+            $username = 'root'; $password = '';
+            $this->pdo = new PDO('mysql:host=localhost;dbname=youdemy_db', $username, $password);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+            $this->pdo->setAttribute(PDO::FETCH_ASSOC, PDO::ATTR_DEFAULT_FETCH_MODE); 
         } catch (PDOException $e) {
-            throw new Exception("Connection failed: " . $e->getMessage());
+            echo "Connection failed: " . $e->getMessage();
         }
     }
 
-    // function for getting the connection
-    public static function getConnection() {
-        if(self::$instance == NULL) {
-            self::$instance = new Database();
+    public static function getInstance() {
+        if (!isset(self::$instance)) {
+            self::$instance = new self();
         }
         return self::$instance;
+    }
+
+    public function getConnection() {
+        return $this->pdo;
     }
 
     // override the clone magic function to not copy the instance of database connection
