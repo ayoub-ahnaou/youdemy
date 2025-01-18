@@ -34,7 +34,32 @@ $image = $cours_details["image"];
 $video = $type == "video" ? $cours_details["content"] : null;
 $document = $type == "document" ? $cours_details["content"] : null;
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $title = Helpers::filterInput($_POST["title"]);
+    $subtitle = Helpers::filterInput($_POST["subtitle"]);
+    $langues = Helpers::filterInput($_POST["langues"]);
+    $description = Helpers::filterInput($_POST["description"]);
+    $type = Helpers::filterInput($_POST["type"]);
+    $category = Helpers::filterInput($_POST["category"]);
+    $image = FileUploader::handleImageUpload($_FILES["thumbnails"]);
 
+    if(!$image["success"]) $image_err = $image["message"];
+
+    if ($type == "document") {
+        if (!isset($_FILES["document"]) || $_FILES["document"]["error"] !== UPLOAD_ERR_OK) {
+            $document_err = "Please upload a PDF document";
+        } else {
+            $document = FileUploader::handlePdfUpload($_FILES["document"]);
+            if (!$document['success']) {
+                $document_err = $document['message'];
+            }
+        }
+    }
+
+    if ($type == "video") {
+        $video = $_POST["video"];
+    }
+}
 ?>
 
 <!DOCTYPE html>
