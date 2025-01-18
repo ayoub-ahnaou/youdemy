@@ -66,4 +66,18 @@ class CoursModel {
             throw new Exception("Failed to retieve courses students: " . $e->getMessage());
         }
     }
+
+    public function getLastCoursAdded() {
+        try {
+            $stmt = $this->connection->prepare("SELECT c.*, firstname, lastname, email, gender, category_name 
+                FROM courses c
+                JOIN users u ON u.user_id = c.user_id
+                JOIN categories ca ON ca.category_id = c.category_id
+                ORDER BY c.created_at DESC LIMIT 5");
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            throw new Exception("failed to retrieve courses: " . $e->getMessage());
+        }
+    }
 }
