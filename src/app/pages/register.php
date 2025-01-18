@@ -1,3 +1,36 @@
+<?php
+
+use App\class\Person;
+use App\helpers\Helpers;
+use App\model\PersonModel;
+
+$firstname = "";
+$lastname = "";
+$phone = "";
+$email = "";
+$password = "";
+$password_repeat = "";
+
+$firstname_err = "";
+$lastname_err = "";
+$phone_err = "";
+$email_err = "";
+$password_err = "";
+$password_repeat_err = "";
+
+$err = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstname = Helpers::filterInput($_POST["firstname"]);
+    $lastname = Helpers::filterInput($_POST["lastname"]);
+    $phone = Helpers::filterInput($_POST["phone"]);
+    $email = Helpers::filterInput($_POST["email"]);
+    $password = Helpers::filterInput($_POST["password"]);
+    $password_repeat = Helpers::filterInput($_POST["password_repeat"]);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
