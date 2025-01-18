@@ -2,6 +2,7 @@
 require_once '../../../vendor/autoload.php';
 
 use App\helpers\Helpers;
+use App\model\PersonModel;
 
 $email = "";
 $password = "";
@@ -15,6 +16,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if(empty($email)) $email_err = "this filed should not be empty";
     if(empty($password)) $password_err = "this filed should not be empty";
+
+    if(!empty($email) && !empty($password)){
+
+        $user = new PersonModel();
+        if($user->isEmailExist($email) != 0){
+            $res = $user->login($email, $password);
+            if(!$res) $password_err = "Password incorrect";
+        } else {
+            $err = "Email or password incorrect";
+        }
+    }
 }
 ?>
 
