@@ -51,5 +51,36 @@ class VideoCours extends CoursModel implements CoursInterface {
             throw new Exception("failed to retrieve cours details: " . $e->getMessage());
         }
     }
+    
+    public function updateCours(Cours $cours, $cours_id){
+        $sql = "UPDATE courses SET 
+            title = :title,
+            subtitle = :subtitle,
+            langues = :langues,
+            description = :description,
+            type = :type,
+            category_id = :category_id,
+            image = :image,
+            content = :content
+            WHERE cours_id = :cours_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $res = $stmt->execute([
+                ":title" => $cours->__get("title"),
+                ":subtitle" => $cours->__get("subtitle"),
+                ":langues" => $cours->__get("langues"),
+                ":description" => $cours->__get("description"),
+                ":type" => $cours->__get("type"),
+                ":category_id" => $cours->__get("category"),
+                ":image" => $cours->__get("image"),
+                ":content" => $cours->__get("video"),
+                ":cours_id" => $cours_id
+            ]);
+            if($res) return true;
+            else return $res;
+        } catch (Exception $e) {
+            throw new Exception("Failed to update course: " . $e->getMessage());
+        }
+    }
 
 }
