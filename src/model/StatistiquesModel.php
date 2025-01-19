@@ -30,4 +30,17 @@ class StatistiquesModel {
             throw new Exception("Failed to get stats: " . $e->getMessage());
         }
     }
+
+    // get the number of courses created by in instractor
+    public function getCountCoursesByInstarctor($user_id) {
+        $sql = "SELECT COUNT(*) AS total_courses
+            FROM courses WHERE user_id = :user_id";
+        try {    
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([":user_id" => $user_id]);
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            throw new Exception("Failed to get stats: " . $e->getMessage());
+        }
+    }
 }
