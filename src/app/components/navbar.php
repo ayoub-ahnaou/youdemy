@@ -50,12 +50,12 @@
             <!-- notification icon -->
             <a href="./instractor-dashboard.php" class="flex items-center gap-2 relative">
                 <!-- <img src="../assets/svgs/notification.svg" class="h-4" alt=""> -->
-                <span class="text-xs">Dashboard</span>
+                <span class="text-xs">Instractor Dashboard</span>
                 <!-- <span class="bg-pink-500 rounded-full px-1 absolute -top-1 -right-1 text-[10px]">0</span> -->
             </a>
             <?php } ?>
 
-            <?php if(!isTeacher() || !isAdmin()) { ?>
+            <?php if(!isTeacher() && !isAdmin() && isAuth()) { ?>
             <a title="request to be instractor" href="../../process/requests/send-request.php" class="flex items-center gap-2 relative">
             <img src="../assets/svgs/request.svg" class="h-4" alt="">
                 <span class="text-xs">Request Admin</span>
