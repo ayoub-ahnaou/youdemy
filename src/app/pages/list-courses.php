@@ -1,7 +1,7 @@
 <?php
 require_once '../../../vendor/autoload.php';
-include_once "../../middlewares/access.php"; 
-if(!isAdmin()) header("location: ./index.php"); 
+include_once "../../middlewares/access.php";
+if (!isAdmin()) header("location: ./index.php");
 
 use App\helpers\Helpers;
 use App\model\CoursModel;
@@ -67,7 +67,6 @@ $allCourses = $coursModel->getAllCourses();
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">subtitle</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">description</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">created at</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">updated at</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">langues</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">type</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">category</th>
@@ -88,7 +87,6 @@ $allCourses = $coursModel->getAllCourses();
                                     <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $cours["subtitle"]; ?></td>
                                     <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $cours["description"]; ?></td>
                                     <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $created_at; ?></td>
-                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $updated_at ?? "N/A"; ?></td>
                                     <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $cours["langues"]; ?></td>
                                     <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $cours["type"]; ?></td>
                                     <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $cours["category_name"] ?></td>
@@ -101,18 +99,13 @@ $allCourses = $coursModel->getAllCourses();
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">
+                                    <td class="px-6 py-1 whitespace-nowrap text-xs text-gray-500">
                                         <div class="flex gap-2">
-                                            <a href="../../process/requests/accept-request.php?user_id=<?= $cours["user_id"]; ?>" class="p-1 hover:text-blue-600">
+                                            <a href="../../process/courses/delete-cours-by-admin.php?cours_id=<?= $cours["cours_id"]; ?>" class="p-1 hover:text-red-600 flex items-center">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7L5 7M10 11v6M14 11v6M6 7v12a2 2 0 002 2h8a2 2 0 002-2V7M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2" />
                                                 </svg>
-                                            </a>
-                                            <a href="../../process/requests/decline-request.php?user_id=<?= $cours["user_id"]; ?>" class="p-1 hover:text-red-600">
-                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
-                                                    <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                                                </svg>
+                                                <span>Delete</span>
                                             </a>
                                         </div>
                                     </td>
