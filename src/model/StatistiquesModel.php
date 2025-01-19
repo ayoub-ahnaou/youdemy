@@ -71,4 +71,28 @@ class StatistiquesModel {
         $stmt->execute();
         return $stmt->fetch();
     }
+
+    // get total of courses
+    public function getTotalCourses() {
+        $sql = "SELECT COUNT(*) as 'total_courses' FROM courses";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    // get total of students
+    public function getTotalStudents() {
+        $sql = "SELECT COUNT(*) as 'total_students' FROM users WHERE role_id = 3";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    // get total of instractors
+    public function getTotalInstractors() {
+        $sql = "SELECT COUNT(*) as 'total_instractors' FROM users WHERE role_id = 2";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
 }
