@@ -1,7 +1,7 @@
 <?php
 require_once '../../../vendor/autoload.php';
-include_once "../../middlewares/access.php"; 
-if(!isAdmin()) header("location: ./index.php"); 
+include_once "../../middlewares/access.php";
+if (!isAdmin()) header("location: ./index.php");
 
 use App\model\EnrollementModel;
 
@@ -48,6 +48,7 @@ $enrollements = $enrollModel->getAllEnrollements();
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">email</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">course</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">date enrollements</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">options</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
@@ -69,6 +70,16 @@ $enrollements = $enrollModel->getAllEnrollements();
                                         </div>
                                     </td>
                                     <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $enroll["created_at"]; ?></td>
+                                    <td class="px-6 py-1 whitespace-nowrap text-xs text-gray-500">
+                                        <div class="flex gap-2">
+                                            <a href="../../process/enrollements/delete-enrollement.php?enroll_id=<?= $enroll["enroll_id"]; ?>" class="p-1 hover:text-red-600 flex items-center">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7L5 7M10 11v6M14 11v6M6 7v12a2 2 0 002 2h8a2 2 0 002-2V7M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2" />
+                                                </svg>
+                                                <span>Delete</span>
+                                            </a>
+                                        </div>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
 
