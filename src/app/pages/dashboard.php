@@ -1,6 +1,18 @@
-<?php 
+<?php
+
+use App\model\StatistiquesModel;
+
+require_once '../../../vendor/autoload.php';
 include_once "../../middlewares/access.php"; 
-if(!isAdmin()) header("location: ./index.php"); 
+if(!isAdmin()) header("location: ./index.php");
+
+$statsModel = new StatistiquesModel();
+$countStudents = $statsModel->getTotalStudents();
+$totalInstractors = $statsModel->getTotalInstractors();
+$countCourses = $statsModel->getTotalCourses();
+$topCourse = $statsModel->getTopPerformingCourse();
+$topInstractors = $statsModel->getTopThreeInstarctors();
+$coursesInEachCategory = $statsModel->getNumberCoursesInCategory();
 ?>
 
 <!DOCTYPE html>
@@ -34,9 +46,6 @@ if(!isAdmin()) header("location: ./index.php");
 
             <!-- Stats Cards -->
             <?php require_once "../components/admin-stats-top.php"; ?>
-
-            <!-- Data Table -->
-            <?php require_once "../components/recent-enrolls.php"; ?>
 
             <?php require_once "../components/admin-stats-bottom.php"; ?>
         </main>
