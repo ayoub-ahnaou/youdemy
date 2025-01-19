@@ -7,6 +7,8 @@ include_once "../../middlewares/access.php";
 if(!isAdmin()) header("location: ./index.php");
 
 $statsModel = new StatistiquesModel();
+
+$countEnrollements = $statsModel->getTotalEnrollements();
 $countStudents = $statsModel->getTotalStudents();
 $totalInstractors = $statsModel->getTotalInstractors();
 $countCourses = $statsModel->getTotalCourses();
