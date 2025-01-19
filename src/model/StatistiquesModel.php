@@ -95,4 +95,16 @@ class StatistiquesModel {
         $stmt->execute();
         return $stmt->fetch();
     }
+
+    // get number of course in each category
+    public function getNumberCoursesInCategory() {
+        $sql = "SELECT COUNT(cours_id) AS 'nbre_courses', ca.category_name
+                FROM courses co
+                JOIN categories ca
+                ON ca.category_id = co.category_id
+                GROUP BY co.category_id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
