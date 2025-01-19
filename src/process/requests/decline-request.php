@@ -8,4 +8,4 @@ $user_id = $_GET["user_id"];
 $admin = new AdminModel();
 $admin->declineEnseignantRequest($user_id);
 $admin->deleteEnseignantRequest($user_id);
-header("location: ../../app/pages/requests.php");
+header("location: ../../app/pages/list-requests.php");
