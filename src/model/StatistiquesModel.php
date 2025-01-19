@@ -107,4 +107,13 @@ class StatistiquesModel {
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    // get number of course in each category
+    public function getTotalEnrollements() {
+        $sql = "SELECT COUNT(*) AS 'nbre_enrollements'
+            FROM enrollements";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
 }
