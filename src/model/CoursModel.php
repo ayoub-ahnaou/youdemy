@@ -7,6 +7,7 @@ use PDO;
 
 class CoursModel {
     private PDO $connection;
+    public static $coursParPage = 4;
 
     public function __construct(){
         $this->connection = Database::getInstance()->getConnection();
@@ -22,6 +23,43 @@ class CoursModel {
             return $stmt->fetchAll();
         } catch (Exception $e) {
             throw new Exception("failed to retrieve courses: " . $e->getMessage());
+        }
+    }
+
+    public function getCoursesFiltered($page, $category_id = 0) {
+        $offset = self::$coursParPage * ( $page - 1 );
+        if($category_id > 0) {
+            $sql = "SELECT c.*, firstname, lastname, email, gender, category_name 
+                FROM courses c
+                JOIN users u ON u.user_id = c.user_id
+                JOIN categories ca ON ca.category_id = c.category_id
+                AND c.category_id = :category_id 
+                ORDER BY c.created_at LIMIT :offset, :limit";
+                try {
+                    $stmt = $this->connection->prepare($sql);
+                    $stmt->bindValue(":category_id", $category_id);
+                    $stmt->bindValue(":offset", $offset, \PDO::PARAM_INT);
+                    $stmt->bindValue(":limit", self::$coursParPage, \PDO::PARAM_INT);
+                    $stmt->execute();
+                    return $stmt->fetchAll();
+                } catch (Exception $e) {
+                    throw new Exception("failed to filter courses: " . $e->getMessage());
+                }
+        } else {
+            $sql = "SELECT c.*, firstname, lastname, email, gender, category_name 
+                FROM courses c
+                JOIN users u ON u.user_id = c.user_id
+                JOIN categories ca ON ca.category_id = c.category_id
+                ORDER BY c.created_at LIMIT :offset, :limit";
+                try {
+                    $stmt = $this->connection->prepare($sql);
+                    $stmt->bindValue(":offset", $offset, \PDO::PARAM_INT);
+                    $stmt->bindValue(":limit", self::$coursParPage, \PDO::PARAM_INT);
+                    $stmt->execute();
+                    return $stmt->fetchAll();
+                } catch (Exception $e) {
+                    throw new Exception("failed to filter courses: " . $e->getMessage());
+                }
         }
     }
 
