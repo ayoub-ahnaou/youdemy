@@ -1,6 +1,12 @@
 <?php
 include_once "../../middlewares/access.php"; 
 if(!isTeacher() || isAdmin()) header("location: ./index.php"); 
+
+use App\model\StatistiquesModel;
+
+$statsModel = new StatistiquesModel();
+$totalCourses = $statsModel->getCountCoursesByInstarctor($_SESSION["user_id"]);
+$totalStudents = $statsModel->getCountStudentsInCourseByInstructor($_SESSION["user_id"]);
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +61,7 @@ if(!isTeacher() || isAdmin()) header("location: ./index.php");
                             </svg>
                         </span>
                     </div>
-                    <p class="text-3xl font-bold mt-4">1,847</p>
+                    <p class="text-3xl font-bold mt-4"><?= $totalStudents["total_students"] ?></p>
                 </div>
 
                 <div class="bg-white rounded-lg shadow p-6">
@@ -67,7 +73,7 @@ if(!isTeacher() || isAdmin()) header("location: ./index.php");
                             </svg>
                         </span>
                     </div>
-                    <p class="text-3xl font-bold mt-4">4</p>
+                    <p class="text-3xl font-bold mt-4"><?= $totalCourses["total_courses"] ?></p>
                 </div>
             </div>
         </div>
