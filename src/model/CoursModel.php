@@ -26,6 +26,24 @@ class CoursModel {
         }
     }
 
+    public function searchForCourses($value) {
+        $search = "%$value%";
+        $sql = "SELECT c.*, firstname, lastname, email, gender, category_name 
+                FROM courses c
+                JOIN users u ON u.user_id = c.user_id
+                JOIN categories ca ON ca.category_id = c.category_id
+                WHERE title LIKE :value OR subtitle LIKE :value OR description LIKE :value
+                OR firstname LIKE :value OR lastname = :value
+                ORDER BY c.created_at LIMIT 4";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([":value" => $search]);
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            throw new Exception("failed te search for cours: " . $e->getMessage());
+        }
+    }
+
     public function getCoursesFiltered($page, $category_id = 0) {
         $offset = self::$coursParPage * ( $page - 1 );
         if($category_id > 0) {
