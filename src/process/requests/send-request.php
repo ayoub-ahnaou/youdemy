@@ -2,6 +2,7 @@
 require_once '../../../vendor/autoload.php';
 require_once "../../middlewares/access.php";
 if(isTeacher()) header("location: " . $_SERVER["HTTP_REFERER"]);
+if(!isAuth()) header("location: ../../app/pages/login.php");
 
 use App\helpers\Helpers;
 use App\model\EnseignantModel;
