@@ -55,4 +55,14 @@ class EnrollementModel {
             throw new Exception("failed to get enrollemnts: " . $e->getMessage());
         }
     }
+
+    public function deleteEnrollement($enroll_id) {
+        $sql = "DELETE FROM enrollements WHERE enroll_id = :enroll_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            return $stmt->execute([":enroll_id" => $enroll_id]);
+        } catch (Exception $e) {
+            throw new Exception("Failed to delete enrollement: " . $e->getMessage());
+        }
+    }
 }
