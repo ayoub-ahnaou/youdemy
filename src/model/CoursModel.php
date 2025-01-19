@@ -80,4 +80,19 @@ class CoursModel {
             throw new Exception("failed to retrieve courses: " . $e->getMessage());
         }
     }
+
+    public function getCoursesEnrolledOfUser($user_id) {
+        $sql = "SELECT c.*, firstname, lastname, gender
+            FROM courses c
+            JOIN enrollements e ON e.cours_id = c.cours_id
+            JOIN users u ON u.user_id = c.user_id
+            AND e.user_id = :user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([":user_id" => $user_id]);
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            throw new Exception("failed to get courses: " . $e->getMessage());
+        }
+    }
 }
