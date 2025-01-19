@@ -43,4 +43,35 @@ class AdminModel {
         }
     }
 
+    // functions to activate, banne or delete users
+    public function activateUser($user_id) {
+        $sql = "UPDATE users SET isActive = 1 WHERE user_id = :user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([":user_id" => $user_id])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Request failed: " . $e->getMessage());
+        }
+    }
+
+    public function banUser($user_id) {
+        $sql = "UPDATE users SET isActive = 0 WHERE user_id = :user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([":user_id" => $user_id])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Request failed: " . $e->getMessage());
+        }
+    }
+
+    public function deleteUser($user_id) {
+        $sql = "DELETE FROM users WHERE user_id = :user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([":user_id" => $user_id])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Request failed: " . $e->getMessage());
+        }
+    }
+
 }
