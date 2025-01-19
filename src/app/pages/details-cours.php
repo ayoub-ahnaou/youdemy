@@ -63,19 +63,6 @@ $enrollModel = new EnrollementModel();
                 <!-- <p class="text-gray-600 text-sm mb-6"><?= $cours["description"]; ?>.</p> -->
                 <p class="text-gray-600 text-sm mb-6">"<?= $cours["description"] ?>".</p>
 
-                <!-- Course Stats -->
-                <!-- <div class="flex gap-2 mb-8">
-                    <div class="flex items-center">
-                        <span class="text-sm bg-green-50 px-4 rounded-md text-green-600">Best seller</span>
-                        <span class="text-yellow-400">4.8</span>
-                        <div class="flex text-yellow-400">
-                            ★
-                        </div>
-                        <span class="text-gray-400">(275,832 ratings)</span>
-                    </div>
-                    <span class="text-gray-400">892,451 students</span>
-                </div> -->
-
                 <!-- Creator Info -->
                 <div class="mb-8">
                     <p class="text-sm text-black">Created by <span class="text-red-500 hover:underline cursor-pointer"><?php echo ("Prof. " . $cours["firstname"] . $cours["lastname"] . ", " . $cours["specialite"]); ?></span></p>
@@ -88,7 +75,7 @@ $enrollModel = new EnrollementModel();
                     </div>
                 </div>
 
-                <?php if($isEnroll > 0) { ?>
+                <?php if($isEnroll > 0 || isAdmin() || isTeacher()) { ?>
                 <div class="w-full">
                     <?php if($cours["type"] == "video") { ?>
                     <!-- Conteneur principal de la vidéo -->
@@ -107,7 +94,7 @@ $enrollModel = new EnrollementModel();
                 </div>
                 <?php } ?>
 
-                <?php if($isEnroll == 0) { ?>
+                <?php if($isEnroll == 0 && (!isAdmin() && !isTeacher())) { ?>
                 <div class="bg-red-50 p-2 text-red-600">Enroll to see the content of course</div>
                 <?php } ?>
             </div>
@@ -119,9 +106,11 @@ $enrollModel = new EnrollementModel();
                         <img src="../../../<?= $cours["image"] ?>" alt="Course Preview" class="rounded-lg" />
                     </div>
                     <?php if($isEnroll == 0) { ?>
-                    <a href="../../process/enrollements/enroll.php?user_id=<?= $user_id ?>&cours_id=<?= $cours_id ?>" class="">
-                        <button class="w-full bg-black text-white py-3 rounded-lg mb-2">Enroll now - <span class="text-yellow-400 text-xs">Free</span></button>
-                    </a>
+                        <?php if(!isTeacher() && !isAdmin()) { ?>
+                        <a href="../../process/enrollements/enroll.php?user_id=<?= $user_id ?>&cours_id=<?= $cours_id ?>" class="">
+                            <button class="w-full bg-black text-white py-3 rounded-lg mb-2">Enroll now - <span class="text-yellow-400 text-xs">Free</span></button>
+                        </a>
+                        <?php } ?>
                     <?php } ?>
 
                     <?php if($isEnroll > 0) { ?>
