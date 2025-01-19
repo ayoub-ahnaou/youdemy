@@ -58,4 +58,17 @@ class StatistiquesModel {
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    // get the top course from the enrollement status
+    public function getTopPerformingCourse() {
+        $sql = "SELECT e.cours_id, count(e.user_id) AS 'number_student', c.*
+            FROM enrollements e
+            JOIN courses c ON c.cours_id = e.cours_id
+            GROUP BY e.user_id 
+            ORDER by number_student 
+            DESC LIMIT 1";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
 }
