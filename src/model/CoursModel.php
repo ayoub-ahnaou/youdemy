@@ -26,6 +26,13 @@ class CoursModel {
         }
     }
 
+    public function nbreCourses() {
+        $stmt = $this->connection->prepare("SELECT COUNT(*) as total FROM courses");
+        $stmt->execute();
+        $res = $stmt->fetch();
+        return $res["total"];
+    }
+
     public function searchForCourses($value) {
         $search = "%$value%";
         $sql = "SELECT c.*, firstname, lastname, email, gender, category_name 
