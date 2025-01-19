@@ -43,4 +43,19 @@ class StatistiquesModel {
             throw new Exception("Failed to get stats: " . $e->getMessage());
         }
     }
+
+    // get the top three instractor who have the most enrollements courses
+    public function getTopThreeInstarctors() {
+        $sql = "SELECT users.user_id, firstname, lastname, specialite, academic_level, gender, COUNT(enrollements.enroll_id) AS total_enrollments
+                FROM users
+                JOIN courses ON users.user_id = courses.user_id
+                JOIN enrollements ON courses.cours_id = enrollements.cours_id
+                WHERE users.role_id = 2
+                GROUP BY users.user_id, firstname
+                ORDER BY total_enrollments DESC
+                LIMIT 3";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
