@@ -46,4 +46,36 @@ class RequestModel {
             throw new Exception("Request failed: " . $e->getMessage());
         }
     }
+
+    public function acceptEnseignantRequest($user_id) {
+        $sql = "UPDATE users SET role_id = 2, isRequested = 1 WHERE user_id = :user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([":user_id" => $user_id])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Request failed: " . $e->getMessage());
+        }
+    }
+
+    public function declineEnseignantRequest($user_id) {
+        $sql = "UPDATE users SET 
+            isRequested = 0, gender = null, cin = null, address = null, age = null, specialite = null, academic_level = null, avatar = null
+            WHERE user_id = :user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([":user_id" => $user_id])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Request failed: " . $e->getMessage());
+        }
+    }
+
+    public function deleteEnseignantRequest($user_id) {
+        $sql = "DELETE FROM requests WHERE user_id = :user_id";
+        try {
+            $stmt = $this->connection->prepare($sql);
+            if($stmt->execute([":user_id" => $user_id])) return true;
+        } catch (Exception $e) {
+            throw new Exception("Request failed: " . $e->getMessage());
+        }
+    }
 }
