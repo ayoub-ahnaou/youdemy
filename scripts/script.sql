@@ -54,11 +54,11 @@ CREATE TABLE
 -- TODO: table courses
 CREATE TABLE
     courses (
-        course_id int primary key not null auto_increment,
-        course_title varchar(100) not null,
-        course_subtitle varchar(100) not null,
+        cours_id int primary key not null auto_increment,
+        title varchar(100) not null,
+        subtitle varchar(100) not null,
         description text not null,
-        course_image varchar(255) not null,
+        image varchar(255) not null,
         created_at timestamp default current_timestamp,
         updated_at timestamp null default null,
         langues enum ("english", "frnech", "arabe") not null,
@@ -71,25 +71,21 @@ CREATE TABLE
 -- TODO: Associative table (many to many between courses and tags)
 CREATE table
     courses_tags (
-        course_id int,
+        cours_id int,
         tag_id int,
-        primary key (course_id, tag_id),
-        foreign key (course_id) references courses (course_id) on delete cascade,
+        primary key (cours_id, tag_id),
+        foreign key (cours_id) references courses (cours_id) on delete cascade,
         foreign key (tag_id) references tags (tag_id) on delete cascade
     );
 
--- TODO: table comments
+-- TODO: table requests
 CREATE TABLE
-    comments (
-        comment_id int primary key auto_increment not null,
-        content text not null,
+    requests (
+        request_id int primary key auto_increment not null,
         created_at timestamp default current_timestamp,
-        updated_at timestamp null default null,
         -- FIX: foreign keys here
         user_id int,
         foreign key (user_id) references users (user_id) on delete cascade,
-        course_id int,
-        foreign key (course_id) references courses (course_id) on delete cascade
     );
 
 -- TODO: table enrollements
@@ -100,6 +96,6 @@ CREATE TABLE
         -- FIX: foreign keys here
         user_id int,
         foreign key (user_id) references users (user_id) on delete set null,
-        course_id int,
-        foreign key (course_id) references courses (course_id) on delete set null
+        cours_id int,
+        foreign key (cours_id) references courses (cours_id) on delete set null
     );
