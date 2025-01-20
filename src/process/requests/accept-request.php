@@ -1,11 +1,11 @@
 <?php
 
-use App\model\AdminModel;
+use App\model\RequestModel;
 
 require_once '../../../vendor/autoload.php';
 
 $user_id = $_GET["user_id"];
-$admin = new AdminModel();
-$admin->acceptEnseignantRequest($user_id);
-$admin->deleteEnseignantRequest($user_id);
+$requestModel = new RequestModel();
+$requestModel->acceptEnseignantRequest($user_id);
+$requestModel->deleteEnseignantRequest($user_id);
 header("location: ../../app/pages/list-requests.php");

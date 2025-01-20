@@ -5,7 +5,6 @@ if(isTeacher() || isAdmin()) header("location: " . $_SERVER["HTTP_REFERER"]);
 if(!isAuth()) header("location: ../../app/pages/login.php");
 
 use App\helpers\Helpers;
-use App\model\EnseignantModel;
 use App\model\EtudiantModel;
 use App\model\RequestModel;
 
@@ -35,14 +34,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $isRequestSent = $request->checkIfRequestSent($_SESSION["user_id"]);
         if($isRequestSent) {
             $err = "Plaese wait tell the admins accept your request! you already sent one";
+?>
 
-            // TODO: display message, and after 5s redirect to index page
-            // header("location: ../../app/pages/index.php");
+<script>
+setTimeout(function(){
+    window.location.href = "../../app/pages/index.php"; 
+}, 2500); 
+</script>
+
+<?php
             
         } else {
             $request->createRequest($_SESSION["user_id"]);
-            $enseignant = new EtudiantModel();
-            $enseignant->upgradeUserInfos($_SESSION["user_id"], $age, $gender, $address, $cin, $specialite, $acad_level, $avatar);
+            $etudiant = new EtudiantModel();
+            $etudiant->upgradeUserInfos($_SESSION["user_id"], $age, $gender, $address, $cin, $specialite, $acad_level, $avatar);
 
             header("location: ../../app/pages/index.php");
         }
