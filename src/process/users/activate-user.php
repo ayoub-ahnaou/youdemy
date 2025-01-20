@@ -7,4 +7,4 @@ $user_id = $_GET["user_id"];
 $adminModel = new AdminModel();
 $adminModel->activateUser($user_id);
 
-header("location: ../../app/pages/list-students.php");
+header("location: " . $_SERVER["HTTP_REFERER"]);
