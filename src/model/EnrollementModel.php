@@ -50,7 +50,12 @@ class EnrollementModel {
         try {
             $stmt = $this->connection->prepare($sql);
             $stmt->execute();
-            return $stmt->fetchAll();
+            $res = $stmt->fetchAll();
+            $enrollements = [];
+            foreach($res as $obj) {
+                $enrollements[] = new Enrollement($obj["enroll_id"], $obj["created_at"], $obj["user_id"], $obj["cours_id"], $obj["firstname"], $obj["lastname"], $obj["email"], $obj["title"], $obj["subtitle"], $obj["image"]);
+            }
+            return $enrollements;
         } catch (Exception $e) {
             throw new Exception("failed to get enrollemnts: " . $e->getMessage());
         }

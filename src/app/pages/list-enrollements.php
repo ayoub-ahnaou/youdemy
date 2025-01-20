@@ -55,24 +55,24 @@ $enrollements = $enrollModel->getAllEnrollements();
 
                             <?php foreach ($enrollements as $enroll): ?>
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900">#<?= $enroll["enroll_id"]; ?></td>
-                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $enroll["lastname"]; ?> <?= $enroll["firstname"]; ?></td>
-                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $enroll["email"]; ?></td>
+                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900">#<?= $enroll->__get("enroll_id"); ?></td>
+                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $enroll->__get("lastname"); ?> <?= $enroll->__get("firstname"); ?></td>
+                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $enroll->__get("email"); ?></td>
                                     <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900">
                                         <div class="flex gap-1">
-                                            <a href="./details-cours.php?cours_id=<?= $enroll["cours_id"]; ?>">
-                                                <img class="h-12" src="../../../<?= $enroll["image"]; ?>" alt="<?= $enroll["title"]; ?>">
+                                            <a href="./details-cours.php?cours_id=<?= $enroll->__get("cours_id"); ?>">
+                                                <img class="h-12" src="../../../<?= $enroll->__get("image"); ?>" alt="<?= $enroll->__get("title"); ?>">
                                             </a>
                                             <div class="flex flex-col">
-                                                <p class="h-full font-bold"><?= $enroll["title"]; ?></p>
-                                                <p class="h-full text-xs"><?= $enroll["subtitle"]; ?></p>
+                                                <p class="h-full font-bold"><?= $enroll->__get("title"); ?></p>
+                                                <p class="h-full text-xs"><?= $enroll->__get("subtitle"); ?></p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $enroll["created_at"]; ?></td>
+                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $enroll->__get("created_at"); ?></td>
                                     <td class="px-6 py-1 whitespace-nowrap text-xs text-gray-500">
                                         <div class="flex gap-2">
-                                            <a href="../../process/enrollements/delete-enrollement.php?enroll_id=<?= $enroll["enroll_id"]; ?>" class="p-1 hover:text-red-600 flex items-center">
+                                            <a href="../../process/enrollements/delete-enrollement.php?enroll_id=<?= $enroll->__get("enroll_id"); ?>" class="p-1 hover:text-red-600 flex items-center">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7L5 7M10 11v6M14 11v6M6 7v12a2 2 0 002 2h8a2 2 0 002-2V7M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2" />
                                                 </svg>
