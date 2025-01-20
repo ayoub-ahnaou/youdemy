@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!$image["success"]) $image_err = $image["message"];
         else {
             $categoryModel = new CategoryModel();
-            $category = new Category($name, $image["path"]);
+            $category = new Category(null, $name, $image["path"]);
             $categoryModel->createCategory($category);
 
             header("Location: ../../app/pages/list-categories.php");

@@ -64,20 +64,20 @@ $allCategories = $categoryModel->getAllCategories();
 
                             <?php foreach ($allCategories as $category): ?>
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900">#<?= $category["category_id"]; ?></td>
-                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $category["category_name"]; ?></td>
+                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900">#<?= $category->__get("category_id") ?></td>
+                                    <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900"><?= $category->__get("category_name") ?></td>
                                     <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-900">
-                                        <img src="../../../<?= $category["image"]; ?>" class="h-10" alt="">
+                                        <img src="../../../<?= $category->__get("image") ?>" class="h-10" alt="">
                                     </td>
                                     <td class="px-6 py-1 whitespace-nowrap text-sm text-gray-500">
                                         <div class="flex gap-2">
-                                            <a href="../../process/categories/delete-category.php?category_id=<?= $category["category_id"]; ?>" class="p-1 hover:text-red-600">
+                                            <a href="../../process/categories/delete-category.php?category_id=<?= $category->__get("category_id") ?>" class="p-1 hover:text-red-600">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7L5 7M10 11v6M14 11v6M6 7v12a2 2 0 002 2h8a2 2 0 002-2V7M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2" />
                                                 </svg>
                                             </a>
 
-                                            <a href="../../process/categories/edit-category.php?category_id=<?= $category["category_id"]; ?>" class="p-1 hover:text-blue-600">
+                                            <a href="../../process/categories/edit-category.php?category_id=<?= $category->__get("category_id") ?>" class="p-1 hover:text-blue-600">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4h2m4.2 0.8l-9 9a2 2 0 00-.6 1.4v3.8a1 1 0 001 1h3.8a2 2 0 001.4-.6l9-9a2 2 0 000-2.8l-2.8-2.8a2 2 0 00-2.8 0z" />
                                                 </svg>

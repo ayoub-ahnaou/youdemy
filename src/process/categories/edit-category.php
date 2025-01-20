@@ -12,8 +12,8 @@ $category_id = $_GET["category_id"];
 $categoryModel = new CategoryModel();
 $categoryDetails = $categoryModel->getCategoryByID($category_id);
 
-$name = $categoryDetails["category_name"];
-$image["path"] = $categoryDetails["image"];
+$name = $categoryDetails->__get("category_name");
+$image["path"] = $categoryDetails->__get("image");
 $name_err = $image_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!$image["success"]) $image_err = $image["message"];
         else {
             $categoryModel = new CategoryModel();
-            $category = new Category($name, $image["path"]);
+            $category = new Category(null, $name, $image["path"]);
             $categoryModel->updateCategory($category, $category_id);
 
             header("Location: ../../app/pages/list-categories.php");

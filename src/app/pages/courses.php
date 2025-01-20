@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="w-full mb-8 flex gap-1 flex-wrap text-gray-700">
             <a href="./courses.php" class="bg-gray-100 hover:bg-gray-200 cursor-pointer items-center px-6" value="">All</a>
             <?php foreach ($categories as $category) : ?>
-                <a href="./courses.php?category=<?= $category["category_id"] ?>" class="bg-gray-100 hover:bg-gray-200 cursor-pointer items-center px-6" value=""><?= $category["category_name"] ?></a>
+                <a href="./courses.php?category=<?= $category->__get("category_id") ?>" class="bg-gray-100 hover:bg-gray-200 cursor-pointer items-center px-6" value=""><?= $category->__get("category_name") ?></a>
             <?php endforeach; ?>
         </div>
 

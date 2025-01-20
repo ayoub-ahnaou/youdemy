@@ -16,7 +16,12 @@ class CategoryModel {
     public function getAllCategories() {
         $stmt = $this->connection->prepare("SELECT * FROM categories");
         $stmt->execute();
-        return $stmt->fetchAll();
+        $res = $stmt->fetchAll();
+        $categories = [];
+        foreach($res as $obj) {
+            $categories[] = new Category($obj["category_id"], $obj["category_name"], $obj["image"]);
+        }
+        return $categories;
     }
 
     public function createCategory(Category $category) {
@@ -52,7 +57,9 @@ class CategoryModel {
         try {
             $stmt = $this->connection->prepare($sql);
             $stmt->execute([":category_id" =>$category_id]);
-            return $stmt->fetch();
+            $res = $stmt->fetch();
+            $category = new Category($res["category_id"], $res["category_name"], $res["image"]);
+            return $category;
         } catch (Exception $e) {
             throw new Exception("Failed to get category by id: " . $e->getMessage());
         }
