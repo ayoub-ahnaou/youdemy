@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tagModel = new TagModel();
         foreach($tags as $tag){
             $tag = Helpers::filterInput($tag);
-            $tagModel->createTag(new Tag($tag));
+            $tagModel->createTag(new Tag(null, $tag));
         }
         header("Location: ../../app/pages/list-tags.php");
     }

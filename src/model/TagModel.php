@@ -17,7 +17,12 @@ class TagModel {
     public function getAllTags() {
         $stmt = $this->connection->prepare("SELECT * FROM tags");
         $stmt->execute();
-        return $stmt->fetchAll();
+        $res = $stmt->fetchAll();
+        $tags = [];
+        foreach($res as $tag) {
+            $tags[] = new Tag($tag["tag_id"], $tag["tag_name"]);
+        }
+        return $tags;
     }
 
     public function createTag(Tag $tag) {
