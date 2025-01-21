@@ -30,7 +30,9 @@
                 <img src="../assets/svgs/logout.svg" class="h-5" alt="">
                 <span class="text-xs">Logout</span>
             </a>
+            <?php } ?>
             
+            <?php if(isAuth() && !isAdmin() && !isTeacher()) { ?>
             <!-- profile icon -->
             <a href="./profile.php" class="flex items-center gap-2">
                 <img src="../assets/svgs/profile.svg" class="h-4" alt="">
