@@ -93,8 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $title_err = $subtitle_err = $langues_err = $description_err = $type_err = $category_err = $image_err = $video_err = $document_err = $err = "";
 
         header("location: ../../app/pages/instractors-courses.php");
-    } else {
-        var_dump($title, $subtitle, $langues, $description, $type, $category, $image, $video, $document);
     }
 }
 ?>
@@ -171,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <select name="category" id="category" class="bg-gray-100 rounded-sm p-1">
                                     <option value="" disabled>Select a category</option>
                                     <?php foreach ($categories as $category) : ?>
-                                        <option value="<?= $category["category_id"] ?>" <?= $cours_details["category_id"] == $category["category_id"] ? "selected" : "" ?>><?= $category["category_name"] ?></option>
+                                        <option value="<?= $category->__get("category_id") ?>" <?= $cours_details["category_id"] == $category->__get("category_id") ? "selected" : "" ?>><?= $category->__get("category_name") ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <label name="category_err" class="text-red-600"><?= $category_err ?></label>
@@ -196,7 +194,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </div>
                                 <label name="acad_level_err" class="text-red-600"><?= $image_err ?></label>
                             </div>
-                            <!-- <img id="current_image" src="../../../<?= $image; ?>" class="" alt=""> -->
 
                             <!-- TODO: this partie for tags commented below -->
                         </div>
@@ -264,104 +261,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             else if(type = "document") handleTypeChange("document");
         </script>
 
-        <!-- <script>
-            const tagSelect = document.getElementById('tagSelect');
-            const selectedTags = document.getElementById('selectedTags');
-            const courseTagsInput = document.getElementById('courseTags');
-            let tags = [];
-
-            function addTagFromSelect() {
-                const selectedOption = tagSelect.options[tagSelect.selectedIndex];
-                if (!selectedOption.value) return;
-
-                const tagId = selectedOption.value;
-                const tagName = selectedOption.getAttribute('data-tag-name');
-
-                // Debug lines - you can remove these after confirming values
-                console.log('Selected tagId:', tagId);
-                console.log('Selected tagName:', tagName);
-
-                if (!tags.some(tag => tag.id === tagId)) {
-                    tags.push({
-                        id: tagId,
-                        name: tagName
-                    });
-                    renderTags();
-                    tagSelect.selectedIndex = 0;
-                }
-            }
-
-            function removeTag(tagToRemove) {
-                tags = tags.filter(tag => tag.id !== tagToRemove.id);
-                renderTags();
-            }
-
-            function renderTags() {
-                selectedTags.innerHTML = "";
-                courseTagsInput.value = "";
-
-                // Reset all options to visible
-                Array.from(tagSelect.options).forEach(option => {
-                    if (option.value !== "") {
-                        option.style.display = 'block';
-                    }
-                });
-
-                tags.forEach(tag => {
-                    // Create tag element
-                    const tagElement = document.createElement('div');
-                    tagElement.className = 'inline-flex items-center bg-gray-100 px-3 py-1 text-sm';
-
-                    // Add tag name
-                    const tagText = document.createElement('span');
-                    tagText.textContent = tag.name;
-                    tagElement.appendChild(tagText);
-
-                    // Add remove button
-                    const removeButton = document.createElement('button');
-                    removeButton.className = 'ml-2 text-gray-500 hover:text-gray-700 focus:outline-none';
-                    removeButton.textContent = '×';
-                    removeButton.onclick = () => removeTag(tag);
-                    tagElement.appendChild(removeButton);
-
-                    selectedTags.appendChild(tagElement);
-
-                    // Update hidden input
-                    courseTagsInput.value += (courseTagsInput.value ? ',' : '') + tag.id;
-
-                    // Hide the selected option
-                    const option = Array.from(tagSelect.options).find(opt => opt.value === tag.id);
-                    if (option) {
-                        option.style.display = 'none';
-                    }
-                });
-            }
-
-            // Add event listener for select change
-            tagSelect.addEventListener('change', addTagFromSelect);
-        </script> -->
-
     </div>
     <?php require_once "../../app/components/footer.php"; ?>
 </body>
 
 </html>
-
-<!-- <div class="relative">
-    <label class="text-gray-500" for="tagSelect">Tags *</label>
-    <select class="bg-gray-100 rounded-sm p-1 w-full" id="tagSelect">
-        <option value="">Select a tag</option>
-        <?php foreach ($allTags as $tag) : ?>
-            <option value="<?= $tag["tag_id"]; ?>" data-tag-name="<?= $tag["tag_name"] ?>"><?= $tag["tag_name"] ?></option>
-        <?php endforeach; ?>
-    </select>
-    <label name="tag_err" class="text-red-600"><?= $tags_err ?></label>
-</div>
-
-Selected Tags Container
-<div class="flex flex-wrap gap-2 mt-1" id="selectedTags">
-    Tags will be dynamically added here
-</div>
-
-Hidden Input for Form Submission
-<input type="hidden" name="course_tags" id="courseTags" value="" required> -->

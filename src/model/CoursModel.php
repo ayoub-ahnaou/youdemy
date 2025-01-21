@@ -41,7 +41,7 @@ class CoursModel {
                 JOIN categories ca ON ca.category_id = c.category_id
                 WHERE title LIKE :value OR subtitle LIKE :value OR description LIKE :value
                 OR firstname LIKE :value OR lastname = :value
-                ORDER BY c.created_at LIMIT 4";
+                ORDER BY c.created_at DESC LIMIT 4";
         try {
             $stmt = $this->connection->prepare($sql);
             $stmt->execute([":value" => $search]);
@@ -59,7 +59,7 @@ class CoursModel {
                 JOIN users u ON u.user_id = c.user_id
                 JOIN categories ca ON ca.category_id = c.category_id
                 AND c.category_id = :category_id 
-                ORDER BY c.created_at LIMIT :offset, :limit";
+                ORDER BY c.created_at DESC LIMIT :offset, :limit";
                 try {
                     $stmt = $this->connection->prepare($sql);
                     $stmt->bindValue(":category_id", $category_id);
@@ -75,7 +75,7 @@ class CoursModel {
                 FROM courses c
                 JOIN users u ON u.user_id = c.user_id
                 JOIN categories ca ON ca.category_id = c.category_id
-                ORDER BY c.created_at LIMIT :offset, :limit";
+                ORDER BY c.created_at DESC LIMIT :offset, :limit";
                 try {
                     $stmt = $this->connection->prepare($sql);
                     $stmt->bindValue(":offset", $offset, \PDO::PARAM_INT);

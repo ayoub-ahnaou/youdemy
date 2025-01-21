@@ -168,7 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <select name="category" id="category" class="bg-gray-100 rounded-sm p-1">
                                     <option value="">Select a category</option>
                                     <?php foreach ($categories as $category) : ?>
-                                        <option value="<?= $category["category_id"] ?>"><?= $category["category_name"] ?></option>
+                                        <option value="<?= $category->__get("category_id") ?>"><?= $category->__get("category_name") ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <label name="category_err" class="text-red-600"><?= $category_err ?></label>
@@ -199,7 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <select class="bg-gray-100 rounded-sm p-1 w-full" id="tagSelect">
                                     <option value="">Select a tag</option>
                                     <?php foreach ($allTags as $tag) : ?>
-                                        <option value="<?= $tag["tag_id"]; ?>" data-tag-name="<?= $tag["tag_name"] ?>"><?= $tag["tag_name"] ?></option>
+                                        <option value="<?= $tag->__get("tag_id"); ?>" data-tag-name="<?= $tag->__get("tag_name") ?>"><?= $tag->__get("tag_name") ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <label name="tag_err" class="text-red-600"><?= $tags_err ?></label>
